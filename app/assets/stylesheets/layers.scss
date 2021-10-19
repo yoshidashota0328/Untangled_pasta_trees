@@ -1,0 +1,59 @@
+// Place all the styles related to the aims controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  margin-left: 0px;
+  margin-top: 0px;
+}
+.leaf{
+  background-color:#39C;
+  color: #FFF;
+  text-align: center;
+  padding: 30px;
+  position: absolute;
+  cursor: default;
+  border-radius: 10px;
+  width: 150px;
+}
+.tree-wrapper{
+  text-align: center;
+  padding: 30px;
+  position: absolute;
+  cursor: default;
+  border-radius: 10px;
+  
+}
+td {
+  position:relative;
+}
+.tooltip {
+ 
+  padding:10px;
+  font-size:12px;
+  margin:-30px 0 0;
+  background-color:#666;
+  color:#fff;
+  position:absolute;
+  left: 200px;
+  top: 50%;
+}
+.tooltip:before {
+right: 100%;
+top: 50%;
+border: solid transparent;
+content: " ";
+height: 0;
+width: 0;
+position: absolute;
+border-color: rgba(102, 102, 102, 0);
+border-right-color: #5e5e5e;
+border-width: 8px;
+margin-top: -8px;
+}
+#close-window{
+  float: left;
+}
+.leaf-body{
+  width: 100%;
+  height: 90%;
+}

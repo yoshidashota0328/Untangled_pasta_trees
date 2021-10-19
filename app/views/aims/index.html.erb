@@ -1,0 +1,99 @@
+<body>
+<div class="tree-wrapper">
+  <div class="leaf" style="left: 500px;" id="box">
+    <input type="text" name="content" style="width: 100px;"></br>
+    <button id="left-branch">left</button>
+    <button id="left-down-branch">leftdown</button>
+    <button id="right-down-branch">rightdown</button>
+    <button id="right-branch">right</button>
+  </div>
+</div>
+</body>
+
+<script>
+  var p1;
+  var pX1;
+  var pY
+  var i = 0;
+  var q = 0;
+  var l = 0;
+  var this_id = "";
+  $(document).on('click', '.leaf', function() {
+     this_id = $(this).attr('id');
+    console.log(this_id);
+  });
+  $(document).on('click','#right-down-branch', function(evt){
+      p1 = $(evt.target.parentNode).position();
+      i++;
+      console.log(i);
+      pX1 = p1.left + 150;
+      pY1 = p1.top + 100;
+     $(event.target.parentNode).after('<div class="leaf" id="box' + i + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;"><button id="del">del</button><input type="text" name="content"></br><button id="left-branch">left</button><button id="left-down-branch">leftdown</button><button id="right-down-branch">rightdown</button><button id="right-branch">right</button>')
+  });
+  $(document).on('click','#left-down-branch', function(evt){
+      p1 = $(evt.target.parentNode).position();
+      i++;
+      pX1 = p1.left - 150;
+      pY1 = p1.top + 100;
+     $(event.target.parentNode).after('<div class="leaf" id="box' + i + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;"><button id="del">del</button><input type="text" name="content"></br><button id="left-branch">left</button><button id="left-down-branch">leftdown</button><button id="right-down-branch">rightdown</button><button id="right-branch">right</button>')
+  });
+
+  $(document).on('click','#del', function(evt){
+    $(event.target.parentNode).remove();
+  });
+
+  $(function() {
+    //ドラッグフラグ
+    var drag_flg = false;
+    //マウスダウンの位置
+    var pos1;
+    var pos2;
+    //要素位置の修正値
+    var posX1;
+    var posY1;
+ 
+    //要素内でマウスボタンが押された場合
+    $(".tree-wrapper").mousedown(function(evt1) {
+    
+        //ドラッグ判定（ドラッグしてない場合）
+          if(drag_flg == false) {
+
+              //要素の位置取得
+              pos1 = $(".tree-wrapper").position();
+              //要素位置を取得して修正値を計算
+              posX1 = evt1.clientX - pos1.left;
+              posY1 = evt1.clientY - pos1.top;
+    
+              //ドラッグ中にする
+              drag_flg = true;
+              //要素のテキストを変更
+    
+          //ドラッグ中の場合
+          } else if(drag_flg == true) {
+    
+              //要素のドラッグを解除
+              drag_flg = false;
+              //要素のテキストを変更
+              
+          }
+    });
+ 
+    //要素上でマウスボタンが離された場合
+    $(document).mouseup(function() {
+        //要素のドラッグを解除
+        drag_flg = false;
+        //要素のテキストを変更
+        
+    });
+
+    //ドキュメント上でマウスポインタが動いた場合
+    $(document).mousemove(function(evt2) {
+        //ドラッグ中の場合
+        if(drag_flg == true) {
+            //要素位置をCSSで設定
+            $(".tree-wrapper").css("left",(evt2.clientX - posX1));
+            $(".tree-wrapper").css("top",(evt2.clientY - posY1));
+        }
+    });
+});
+</script>
