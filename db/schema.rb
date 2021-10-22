@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_032135) do
+ActiveRecord::Schema.define(version: 2021_10_20_120714) do
 
   create_table "layers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_10_11_032135) do
     t.integer "positionY", default: 0, null: false
     t.string "title"
     t.text "body"
+    t.integer "parent_id"
+    t.integer "branch", default: 0
   end
 
 end
