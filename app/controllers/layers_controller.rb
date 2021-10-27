@@ -5,7 +5,7 @@ class LayersController < ApplicationController
     @layers = Layer.all
     gon.layers = @layers
     unless Layer.find_by(id: 1)
-      layer = Layer.new(id: 1, positionX: 500, positionY: 30)
+      layer = Layer.new(id: 1, positionX: 500, positionY: 30, parent_id: 1)
       layer.save
     end
     @layer1 = Layer.find_by(id: 1)
@@ -18,7 +18,7 @@ class LayersController < ApplicationController
   def new
     leaf_i = params[:id]
     unless Layer.find_by(id: leaf_i)
-      layer = Layer.new(id: leaf_i, positionX: params[:setX], positionY: params[:setY])
+      layer = Layer.new(id: leaf_i, positionX: params[:setX], positionY: params[:setY], parent_id: params[:parent_id])
       layer.save
     end
   end
@@ -32,6 +32,10 @@ class LayersController < ApplicationController
     @layer.update(layer_params)
   end
 
+  def destroy
+    @layer.destroy
+  end
+
   private
 
   def set_layer
@@ -39,7 +43,7 @@ class LayersController < ApplicationController
   end
 
   def layer_params
-    params.permit(:title, :body, :positionX, :positionY)
+    params.permit(:title, :body, :positionX, :positionY, :parent_id, :branch)
   end
 end
 
