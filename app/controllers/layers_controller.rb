@@ -18,7 +18,7 @@ class LayersController < ApplicationController
   def new
     leaf_i = params[:id]
     unless Layer.find_by(id: leaf_i)
-      layer = Layer.new(id: leaf_i, positionX: params[:setX], positionY: params[:setY])
+      layer = Layer.new(id: leaf_i, positionX: params[:setX], positionY: params[:setY], parent_id: params[:parent_id])
       layer.save
     end
   end

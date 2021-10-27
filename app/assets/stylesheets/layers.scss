@@ -5,15 +5,75 @@ body {
   margin-left: 0px;
   margin-top: 0px;
 }
+div{
+  font-size: 1.5vh;
+}
 .leaf{
-  background-color:#39C;
-  color: #FFF;
+  background-color: white;
+  color:black;
   text-align: center;
   padding: 30px;
   position: absolute;
   cursor: default;
   border-radius: 10px;
   width: 150px;
+  border: solid 4px gray;
+}
+#right-branch{
+  position: absolute;
+  float: right;
+  left: 200px;
+  top: 50%;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  background-color: white;
+  font-size: 20px;
+}
+#right-down-branch{
+  position: absolute;
+  float: right;
+  left: 200px;
+  top: 100%;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  background-color: white;
+  font-size: 20px;
+}
+#left-branch{
+  position: absolute;
+  float: right;
+  left: -20px;
+  top: 50%;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  background-color: white;
+  font-size: 20px;
+}
+#left-down-branch{
+  position: absolute;
+  float: right;
+  left: -20px;
+  top: 100%;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  background-color: white;
+  font-size: 20px;
 }
 .tree-wrapper{
   text-align: center;
@@ -30,12 +90,13 @@ td {
   padding:10px;
   font-size:12px;
   margin:-30px 0 0;
-  background-color:#666;
+  background-color:white;
   color:#fff;
   position:absolute;
   left: 200px;
   top: 50%;
   z-index: 1;
+  border: solid 4px gray;
 }
 .tooltip:before {
 right: 100%;
@@ -73,3 +134,65 @@ margin-top: -8px;
   position: absolute;
   background:rgba(0,0,0,0); 
 }
+.client {
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 2;
+  font-size: 2vh;
+}
+#message {
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  z-index: 2;
+  opacity: 0;
+  font-size: 2vw;
+  pointer-events: none;
+}
+
+.fade-in{
+  animation-name: fadeintext;
+  animation-fill-mode:forwards;
+  animation-duration:2s;
+  animation-timing-function:ease;
+}
+.fade-out{
+  animation-name: fadeouttext;
+  animation-fill-mode:forwards;
+  animation-duration:2s;
+  animation-timing-function:ease;
+}
+
+@keyframes fadeintext {
+  0%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 1;
+  }
+}
+@keyframes fadeouttext {
+  0%{
+      opacity: 1;
+  }
+  100%{
+      opacity: 0;
+  }
+}
+input:not(.not){
+  padding: 0;
+  height: 1.5vh;
+  font-size: 1.5vh;
+  width: 100%;
+}
+input:not(.title){
+  padding: 0;
+  height: 1.5vh;
+  font-size: 1.5vh;
+}
+textarea{
+  font-size: 1.5vh;
+}
+
+

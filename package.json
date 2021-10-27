@@ -1,5 +1,8 @@
 {
   "name": "untangled_pasta_trees",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "easymde": "^2.15.0",
+    "simplemde": "^1.11.2"
+  }
 }
