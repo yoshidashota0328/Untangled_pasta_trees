@@ -40,10 +40,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :production do
   gem 'pg'
 end
-<<<<<<< HEAD
 
-=======
->>>>>>> 6c0e4ea3d4696d29015cd3a7ab4738e32833ecd5
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
