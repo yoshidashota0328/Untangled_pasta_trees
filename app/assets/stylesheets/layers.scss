@@ -6,13 +6,14 @@ body {
   margin-top: 0px;
 }
 div{
-  font-size: 1.5vh;
+  font-size: 2vh;
 }
+
 .leaf{
   background-color: white;
   color:black;
   text-align: center;
-  padding: 30px;
+  padding: 20px 30px;
   position: absolute;
   cursor: default;
   border-radius: 10px;
@@ -192,7 +193,9 @@ input:not(.title){
   font-size: 1.5vh;
 }
 textarea{
+  font-size: 2vh;
+}
+.title{
   font-size: 1.5vh;
 }
-
 
