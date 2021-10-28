@@ -42,8 +42,7 @@
           eazy_mde['easyMDE1'] = new EasyMDE({element: document.getElementById('leaf-body1'), maxHeight: "550px"});
       }else if(elem.id !== 1){
         i = elem.id;
-        console.log(title_posX + elem.positionX);
-        //parent_elem = document.getElementById(elem.parent_id); 
+        console.log(title_posX + elem.positionX); 
         var parent_posX = $('#posX' + elem.parent_id).val();
         var parent_posY = $('#posY' + elem.parent_id).val();
         var parent_all_pos = $('#' + elem.parent_id).position();
