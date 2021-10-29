@@ -2,10 +2,10 @@ class LayersController < ApplicationController
   protect_from_forgery
   before_action :set_layer, only: %i[show edit update destroy]
   def index
-    @layers = Layer.all
+    @layers = Layer.all.order(:id)
     gon.layers = @layers
     unless Layer.find_by(id: 1)
-      layer = Layer.new(id: 1, positionX: 500, positionY: 30, parent_id: 1)
+      layer = Layer.new(id: 1, positionX: 1200, positionY: 30, parent_id: 1)
       layer.save
     end
     @layer1 = Layer.find_by(id: 1)
