@@ -1,6 +1,7 @@
 <body>
   <div class="client"></div>
   <div id="message"></div>
+  <button id="treetop-pos-reset">treetop reset</button>
 </body>
 
 <script>
@@ -115,6 +116,10 @@
   $(document).on('click', '.show', function(evt){
     $('.tooltip').css({'position':'fixed','left':'0px','top':'20px','width':'100vw','height':'100vh'});
     evt.stopPropagation()
+  });
+  //treetopのポジションをリセットする。
+  $(document).on('click', '#treetop-pos-reset', function(){
+    $.ajax({url: "layers/1", type: "POST", data: {positionX: 1200, positionY: 30, "_method": "PATCH"}});
   });
 
   /*$(document).on('click','#pos_reset', function(evt){

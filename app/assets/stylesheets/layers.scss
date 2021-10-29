@@ -198,4 +198,13 @@ textarea{
 .title{
   font-size: 1.5vh;
 }
+#treetop-pos-reset{
+  position: fixed;
+  top: 40px;
+  height: 3vh;
+  font-size: 2vh;
+  background-color: white;
+  border-radius: 10px;
+  border: solid 4px gray;
+}
 
