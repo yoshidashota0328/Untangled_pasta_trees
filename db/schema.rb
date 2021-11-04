@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_144251) do
+ActiveRecord::Schema.define(version: 2021_11_03_043630) do
 
   create_table "layers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -20,17 +20,22 @@ ActiveRecord::Schema.define(version: 2021_11_01_144251) do
     t.string "title"
     t.text "body"
     t.integer "parent_id"
-    t.integer "branch", default: 0
+    t.integer "user_id"
+    t.integer "tree_id"
+    t.integer "layer_id"
+    t.integer "db_id"
+    t.index ["tree_id"], name: "index_layers_on_tree_id"
+    t.index ["user_id"], name: "index_layers_on_user_id"
   end
 
   create_table "trees", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.integer "leaf_count"
-    t.integer "layer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["layer_id"], name: "index_trees_on_layer_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_trees_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

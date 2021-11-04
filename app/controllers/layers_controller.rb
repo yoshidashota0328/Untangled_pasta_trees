@@ -2,34 +2,32 @@ class LayersController < ApplicationController
   protect_from_forgery
   before_action :set_layer, only: %i[show edit update destroy]
   def index
-    @layers = Layer.all.order(:id)
+    @tree = Tree.find(params[:tree_id]) 
+    @layers = @tree.layers.all.order(:layer_id)
     gon.layers = @layers
-    unless Layer.find_by(id: 1)
-      layer = Layer.new(id: 1, positionX: 500, positionY: 30, parent_id: 1)
-      layer.save
-    end
-    @layer1 = Layer.find_by(id: 1)
-    gon.positionX = Layer.find_by(id: 1).positionX
-    gon.positionY = Layer.find_by(id: 1).positionY
+    #@layer1 = current_user.layers.find_by(id: 1)
+    #gon.positionX = @layer1.positionX
+    #gon.positionY = @layer1.positionY
   end
 
   def show; end
 
   def new
-    leaf_i = params[:id]
-    unless Layer.find_by(id: leaf_i)
-      layer = Layer.new(id: leaf_i, positionX: params[:setX], positionY: params[:setY], parent_id: params[:parent_id])
+    #unless Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
+      layer = Layer.new(layer_id: params[:layer_id], positionX: params[:setX], positionY: params[:setY], parent_id: params[:parent_id], user_id: params[:user_id], tree_id: params[:tree_id])
       layer.save
-    end
+      layer = Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
+      gon.db_id = layer.id
+    #end
   end
 
   def create
-    @layer = Layer.new(layer_params)
+    @layer = @tree.layers.new(layer_params)
     @layer.save
   end
 
   def update
-    @layer.update(layer_params)
+      @layer.update(layer_params)
   end
 
   def destroy
@@ -39,11 +37,11 @@ class LayersController < ApplicationController
   private
 
   def set_layer
-    @layer = Layer.find(params[:id])
+    @layer = Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
   end
 
   def layer_params
-    params.permit(:title, :body, :positionX, :positionY, :parent_id, :branch)
+    params.permit(:id, :title, :body, :positionX, :positionY, :parent_id, :db_id, :layer_id)
   end
 end
 

@@ -1,0 +1,8 @@
+<h1>new_tree</h1>
+<%= form_with model: @tree, local: true do |f| %>
+  <%= f.label :title %></br>
+  <%= f.text_field :title %></br>
+  <%= f.label :description %></br>
+  <%= f.text_field :description %></br>
+  <%= f.submit 'create' %>
+<% end %>
