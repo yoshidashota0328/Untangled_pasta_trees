@@ -1,13 +1,6 @@
 // Place all the styles related to the aims controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-  margin-left: 0px;
-  margin-top: 0px;
-}
-div{
-  font-size: 2vh;
-}
 
 .leaf{
   background-color: white;
@@ -112,7 +105,7 @@ border-right-color: #5e5e5e;
 border-width: 8px;
 margin-top: -8px;
 }
-#close-window{
+.close-window{
   float: left;
 }
 .leaf-body{

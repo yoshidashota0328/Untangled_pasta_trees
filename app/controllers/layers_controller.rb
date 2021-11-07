@@ -13,12 +13,10 @@ class LayersController < ApplicationController
   def show; end
 
   def new
-    #unless Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
+    unless Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
       layer = Layer.new(layer_id: params[:layer_id], positionX: params[:setX], positionY: params[:setY], parent_id: params[:parent_id], user_id: params[:user_id], tree_id: params[:tree_id])
       layer.save
-      layer = Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
-      gon.db_id = layer.id
-    #end
+    end
   end
 
   def create
@@ -27,7 +25,9 @@ class LayersController < ApplicationController
   end
 
   def update
-      @layer.update(layer_params)
+    layer = Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
+    layer.update(layer_params)
+    redirect_to tree_layers_path
   end
 
   def destroy
