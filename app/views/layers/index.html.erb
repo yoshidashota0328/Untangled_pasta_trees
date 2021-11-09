@@ -14,6 +14,7 @@
   var pX2;
   var pY2;
   var treetop_i;
+  var treetop_layer_id;
   var tree_pos;
   var title_posX;
   var title_posY;
@@ -38,6 +39,7 @@
     $.each(gon.layers, function(index, elem){
       if(elem.layer_id == 1){
           treetop_i = elem.id;
+          treetop_layer_id = elem.layer_id
           layer_id = elem.layer_id;
           fk_user_id = elem.user_id
           fk_tree_id = elem.tree_id
@@ -56,15 +58,6 @@
         var parent_posX = $('#posX' + elem.parent_id).val();
         var parent_posY = $('#posY' + elem.parent_id).val();
         var parent_all_pos = $('#' + elem.parent_id).position();
-        /*if(elem.parent_id == 1){
-          before_parent_posX = Number(title_posX);
-          before_parent_posY = Number(title_posY);
-          console.log("lineX" + before_parent_posX)
-        }else if(elem.parent_id !== 1){
-          before_parent_posX = Number(before_parent_posX) + Number(parent_posX);
-          before_parent_posY = Number(before_parent_posY) + Number(parent_posY);
-          console.log("2lineX" + before_parent_posX)
-        }*/
         before_parent_posX = Number(parent_all_pos?.left);
         before_parent_posY = Number(parent_all_pos?.top);
         var leaf_posX = Number(before_parent_posX) + Number(elem.positionX);
@@ -89,9 +82,6 @@
         line_pos.style.height = svg_height + "px";
         $('.tooltip').hide();
         $('#easy-hide' + layer_id).hide();
-        //$('').after('<svg style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" width="' + svg_width + 'px" height="' + svg_height + 'px" viewBox="' + svg_posX + ' ' + svg_posY + ' ' + svg_width + ' ' + svg_height + '"><line x1="' + svg_posX + '" y1="' + svg_posY + '" x2="' + leaf_posX + '" y2="' + leaf_posY + '" stroke="black" stroke-width="5"/></svg>');
-        //before_parent_posX = Number(parent_posX);
-        //before_parent_posY = Number(parent_posY);
         eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + layer_id + ""), maxHeight: "550px"});
       }
     })
@@ -112,9 +102,6 @@
     }, 4000);
   }
 
-  /*$(document).on('click','#create_btn', function(evt){
-    box_count = 1;
-  });*/
   //セーブボタンを押したときにセーブ完了表示
   $(document).on('click', '.save', function(){
     var message = document.getElementById("message");
@@ -123,21 +110,9 @@
   });
   //treetopのポジションをリセットする。
   $(document).on('click', '#treetop-pos-reset', function(){
-    $.ajax({url: "layers/" + treetop_i +"", type: "POST", data: {positionX: 500, positionY: 30, "_method": "PATCH"}});
+    $.ajax({url: "layers/" + treetop_i +"", type: "POST", data: {positionX: 500, positionY: 30, layer_id: treetop_layer_id, user_id: fk_user_id, tree_id: fk_tree_id, "_method": "PATCH"}});
   });
 
-  /*$(document).on('click','#pos_reset', function(evt){
-    $("#posX").val(500);
-    $("#posY").val(30);
-  });*/
-
-  //クリックした要素のid、座表を取得 
-
-  /*$(document).on('click', '.leaf', function(evt) {
-    this_id = $(this).attr('id');
-    console.log("this_id" + this_id);
-    evt.stopPropagation();
-  });*/
   //マウスオーバーでid取得
   $(function(){
     $(document).on({
@@ -203,18 +178,26 @@
       var line_top = parent_posY + 70;
       var setX = -150;
       var setY = 200;
-      setTimeout(function(){
+      const ajax_new = async function(){
         $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, setX: setX, setY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
-      }, 100);
-      $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 150px; height: 200px;"></div>')
-      setTimeout(function(){
+      }
+      const create_leaf = async function(){
+        $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 150px; height: 200px;"></div>')
+        eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + layer_id + ""), maxHeight: "550px"});
+      }
+      const set_params = async function(){
         $("#posX" + layer_id).val(-150);
         $("#posY" + layer_id).val(200);
         $("#parent" + layer_id).val(this_id);
-      }, 200);
+      }
+      const processAll = async function() {
+        await ajax_new()
+        await create_leaf()
+        await set_params()
+      }
+      processAll()
       $('.tooltip').hide();
       $('.easy-hide').hide();
-      eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + layer_id + ""), maxHeight: "550px"});
   });
   //右
   $(document).on('click','#right-branch', function(evt){
@@ -232,18 +215,26 @@
       var line_top = parent_posY + 70;
       var setX = 300;
       var setY = 0;
-      setTimeout(function(){
+      const ajax_new = async function(){
         $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, setX: setX, setY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
-      }, 100);
-      $(event.target).closest(".leaf").after('<div class="leaf right-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box right-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
-      setTimeout(function(){
+      }
+      const create_leaf = async function(){
+        $(event.target).closest(".leaf").after('<div class="leaf right-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box right-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
+        eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + layer_id + ""), maxHeight: "550px"});
+      }
+      const set_params = async function(){
         $("#posX" + layer_id).val(300);
         $("#posY" + layer_id).val(0);
         $("#parent" + layer_id).val(this_id);
-      }, 200);
+      }
+      const processAll = async function() {
+        await ajax_new()
+        await create_leaf()
+        await set_params()
+      }
+      processAll()
       $('.tooltip').hide();
       $('.easy-hide').hide();
-      eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + layer_id + ""), maxHeight: "550px"});
   });
   //左
   $(document).on('click','#left-branch', function(evt){
@@ -261,36 +252,32 @@
       var line_top = parent_posY + 70;
       var setX = -300;
       var setY = 0;
-      setTimeout(function(){
+      const ajax_new = async function(){
         $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, setX: setX, setY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
-      }, 100);
-      $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
-      setTimeout(function(){
+      }
+      const create_leaf = async function(){
+        $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
+        eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + layer_id + ""), maxHeight: "550px"});
+      }
+      const set_params = async function(){
         $("#posX" + layer_id).val(-300);
         $("#posY" + layer_id).val(0);
         $("#parent" + layer_id).val(this_id);
-      }, 200);
+      }
+      const processAll = async function() {
+        await ajax_new()
+        await create_leaf()
+        await set_params()
+      }
+      processAll()
       $('.tooltip').hide();
       $('.easy-hide').hide();
-      eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + layer_id + ""), maxHeight: "550px"});
+      
   });
   //マウスポインターの現在地表示
   $(window).mousemove(function(e) {
     $(".client").text("client : X" + e.clientX + " : Y" + e.clientY);
   });
-  /*$(document).on('click','#left-down-branch', function(evt){
-      p1 = $(evt.target.parentNode).position();
-      i++;
-      pX1 = p1.left - 150;
-      pY1 = p1.top + 100;
-     $(event.target.parentNode).after('<div class="leaf" id="' + i + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;"><button id="del">del</button><input type="text" name="content"></br><button id="left-branch">left</button><button id="left-down-branch">leftdown</button><button id="right-down-branch">rightdown</button><button id="right-branch">right</button><div class="tooltip"><textarea></textarea><p>テキストボックスのツールチップ</p></div>')
-  });*/
-  //ボックスを削除
-  /*$(document).on('click','#del', function(evt){
-    $(event.target.parentNode).remove();
-    var del_id = $(event.target.parentNode).attr('id');
-    $.ajax({url: "layers/" + del_id + "", type: "POST", data: {"id":del_id,"_method": "DELETE"} });
-  });*/
   //ツリーをドラッグで移動
   $(function() {
     //ドラッグフラグ
@@ -389,7 +376,6 @@
           if(tooltip_id?.match(/tooltip/)){ 
             var tooltip_size = document.getElementById(tooltip_id);    
             tooltip_size.style.width = "1280px";
-            tooltip_size.style.height = "720px"; 
             $('#easy-hide' + this_id).show();
             console.log('#easy-hide' + this_id)
             $(document).on('click','.tooltip', function(){
@@ -408,7 +394,6 @@
           if(tooltip_id?.match(/tooltip/)){ 
             var tooltip_size = document.getElementById(tooltip_id);
             tooltip_size.style.width = "";
-            tooltip_size.style.height = "";
             tooltip_size.style.zIndex = 1;
             $('#easy-hide' + this_id).hide();
           }
