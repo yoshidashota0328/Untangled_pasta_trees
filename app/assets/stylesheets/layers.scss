@@ -174,16 +174,17 @@ margin-top: -8px;
       opacity: 0;
   }
 }
-input:not(.not){
-  padding: 0;
-  height: 1.5vh;
-  font-size: 1.5vh;
-  width: 100%;
+input.title{
+  
+    padding: 0;
+    height: 1.5vh;
+    font-size: 1.5vh;
+    width: 100%;
 }
-input:not(.title){
-  padding: 0;
-  height: 1.5vh;
-  font-size: 1.5vh;
+input.not{
+    padding: 0;
+    height: 1.5vh;
+    font-size: 1.5vh;
 }
 textarea{
   font-size: 2vh;

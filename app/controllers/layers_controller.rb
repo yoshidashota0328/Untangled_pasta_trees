@@ -41,7 +41,7 @@ class LayersController < ApplicationController
   end
 
   def layer_params
-    params.permit(:id, :title, :body, :positionX, :positionY, :parent_id, :db_id, :layer_id)
+    params.permit(:id, :title, :body, :positionX, :positionY, :parent_id, :db_id, :layer_id, :user_id, :tree_id)
   end
 end
 
