@@ -4,16 +4,14 @@
 #log{
   float: right;
   font-size: 2vh;
-  margin-right: 30px;
   position: fixed;
   left: 90%;
 }
 #top{
   float: right;
   font-size: 2vh;
-  margin-right: 30px;
   position: fixed;
-  left: 80%;
+  left: 82%;
 }
 
 .header-div{
@@ -23,4 +21,9 @@
 input.text{
   height: 5vh;
   font-size: 4vh;
+}
+#user_name{
+  position: fixed;
+  float: right;
+  left: 70%;
 }

@@ -2,12 +2,11 @@ class LayersController < ApplicationController
   protect_from_forgery
   before_action :set_layer, only: %i[show edit update destroy]
   def index
-    @tree = Tree.find(params[:tree_id]) 
-    @layers = @tree.layers.all.order(:layer_id)
-    gon.layers = @layers
-    #@layer1 = current_user.layers.find_by(id: 1)
-    #gon.positionX = @layer1.positionX
-    #gon.positionY = @layer1.positionY
+    tree = Tree.find(params[:tree_id]) 
+    gon.layers = tree.layers.all.order(:layer_id)
+    gon.current_user = current_user.id
+    user_id = tree.user_id
+    @author = User.find(user_id)
   end
 
   def show; end

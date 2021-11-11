@@ -1,5 +1,6 @@
 <header>
   <div class="header-div">
+    <div id="user_name" >user:<%= current_user.user_name%></div>
     <%= link_to 'ログアウト', logout_path, id: "log", method: :delete %>
     <%= link_to 'top', root_path, id: "top" %>
   </div>
