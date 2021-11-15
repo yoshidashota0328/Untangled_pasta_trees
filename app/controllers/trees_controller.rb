@@ -1,5 +1,5 @@
 class TreesController < ApplicationController
-before_action :set_tree, only: %i[destroy]
+before_action :set_tree, only: %i[edit update destroy]
 
   def index
     @trees = Tree.all.order(:id)
@@ -9,12 +9,19 @@ before_action :set_tree, only: %i[destroy]
     @tree = current_user.trees.new
   end
 
+  def edit; end
+
   def create
     @tree = current_user.trees.new(set_tree_params)
     @tree.save!
     layer = current_user.layers.new(layer_id: 1, positionX: 500, positionY: 30, parent_id: 1, user_id: current_user.id, tree_id: @tree.id)
     layer.save!
     redirect_to tree_layers_path(@tree.id)
+  end
+
+  def update
+    @tree.update(set_tree_params)
+    redirect_to trees_path
   end
 
   def destroy
