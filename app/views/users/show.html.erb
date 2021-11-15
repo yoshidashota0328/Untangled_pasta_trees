@@ -1,0 +1,8 @@
+<div class="center">
+  <h1>All_trees</h1>
+  <% if @trees.present? %>
+    <% @trees.each do |tree| %>
+      <%= render partial: 'trees/tree', locals: { tree: tree } %>
+    <% end %>
+  <% end %>
+</div>

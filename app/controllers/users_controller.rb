@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @trees = current_user.trees.all.order(:id)
+  end
+
   def create
     @user = User.new(user_params)
 
