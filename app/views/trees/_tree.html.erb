@@ -2,5 +2,8 @@
   <div class="caption"><%= link_to tree.title, tree_layers_path(tree), data: {"turbolinks" => false}, :style => "color: black;" %></div>
   <div>Description:<%= tree.description %></div>
   <div>Author:<%= User.find(tree.user_id).user_name %></div>
-  <div>updated_at:<%= l tree.updated_at, format: :long %></div>
+  <div>Created_at:<%= l tree.created_at, format: :long %></div>
+  <% if current_user.id == tree.user_id%>
+    <%= link_to "delete", tree_path(tree), method: :delete, data: { confirm: 'Are you sure you want to delete this tree?' } %>
+  <% end %>
 </div>

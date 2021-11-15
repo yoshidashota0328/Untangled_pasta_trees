@@ -1,5 +1,5 @@
 class TreesController < ApplicationController
-before_action :set_tree, only: %i[]
+before_action :set_tree, only: %i[destroy]
 
   def index
     @trees = Tree.all.order(:id)
@@ -15,6 +15,11 @@ before_action :set_tree, only: %i[]
     layer = current_user.layers.new(layer_id: 1, positionX: 500, positionY: 30, parent_id: 1, user_id: current_user.id, tree_id: @tree.id)
     layer.save!
     redirect_to tree_layers_path(@tree.id)
+  end
+
+  def destroy
+    @tree.destroy
+    redirect_to trees_path
   end
 
   private 
