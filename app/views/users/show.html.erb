@@ -1,8 +1,8 @@
 <div class="center">
-  <h1>All_trees</h1>
+  <h1>My_trees</h1>
   <% if @trees.present? %>
     <% @trees.each do |tree| %>
-      <%= render partial: 'trees/tree', locals: { tree: tree } %>
+      <%= render partial: 'shared/tree', locals: { tree: tree } %>
     <% end %>
   <% end %>
 </div>

@@ -21,7 +21,7 @@ before_action :set_tree, only: %i[edit update destroy]
 
   def update
     @tree.update(set_tree_params)
-    redirect_to trees_path
+    redirect_to request.referer
   end
 
   def destroy
@@ -32,7 +32,7 @@ before_action :set_tree, only: %i[edit update destroy]
   private 
 
   def set_tree_params
-    params.require(:tree).permit(:title, :description)
+    params.require(:tree).permit(:title, :description, :state)
   end
 
   def set_tree

@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="caption"><%= link_to tree.title, tree_layers_path(tree), data: {"turbolinks" => false}, :style => "color: black;" %></div>
+  <div>Description:<%= tree.description %></div>
+  <div>Author:<%= User.find(tree.user_id).user_name %></div>
+  <div>Created_at:<%= l tree.created_at, format: :long %></div>
+  <% if current_user.id == tree.user_id %>
+    <%= link_to "edit", edit_tree_path(tree), class: "card float-left" %>
+    <% if tree.state == "public_tree" %>
+      <%= link_to "public_tree", tree_path(tree, params: { tree: { state: "private_tree" }}), method: :patch, class: "card" %>
+    <% elsif tree.state == "private_tree" %>
+      <%= link_to "private_tree", tree_path(tree, params: { tree: { state: "public_tree"}}), method: :patch, class: "card" %>
+    <% end %>
+    <%= link_to "delete", tree_path(tree), class: "card float-right", method: :delete, data: { confirm: 'Are you sure you want to delete this tree?' } %>
+  <% end %>
+</div>
