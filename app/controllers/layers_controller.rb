@@ -1,10 +1,13 @@
 class LayersController < ApplicationController
   protect_from_forgery
   before_action :set_layer, only: %i[show edit update destroy]
+  skip_before_action :require_login, only: %i[index]
   def index
     tree = Tree.find(params[:tree_id]) 
     gon.layers = tree.layers.all.order(:layer_id)
-    gon.current_user = current_user.id
+    if current_user
+      gon.current_user = current_user.id
+    end
     user_id = tree.user_id
     @author = User.find(user_id)
   end
