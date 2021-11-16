@@ -20,19 +20,20 @@ before_action :set_tree, only: %i[edit update destroy]
   end
 
   def update
-    @tree.update(set_tree_params)
-    redirect_to request.referer
+    if @tree.update(set_tree_params)
+      redirect_to request.referer, success: 'Update successful.'
+    end
   end
 
   def destroy
     @tree.destroy
-    redirect_to trees_path
+    redirect_to request.referer
   end
 
   private 
 
   def set_tree_params
-    params.require(:tree).permit(:title, :description, :state)
+    params.require(:tree).permit(:id, :title, :description, :state, :leaf_count)
   end
 
   def set_tree

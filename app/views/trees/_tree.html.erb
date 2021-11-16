@@ -3,6 +3,7 @@
     <div class="caption"><%= link_to tree.title, tree_layers_path(tree), data: {"turbolinks" => false}, :style => "color: black;" %></div>
     <div>Description:<%= tree.description %></div>
     <div>Author:<%= User.find(tree.user_id).user_name %></div>
-    <div>Created_at:<%= l tree.created_at, format: :long %></div>
+    <div>Leaf:<%= tree.leaf_count %></div>
+    <div>Updated_at:<%= l tree.updated_at, format: :long %></div>
   </div>
 <% end %>

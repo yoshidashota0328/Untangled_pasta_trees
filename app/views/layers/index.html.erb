@@ -110,6 +110,9 @@
       message.classList.remove("fade-out");
     }, 4000);
   }
+  function leafCount() {
+     $.ajax({url: "/trees/" + fk_tree_id +"", type: "POST", data: { tree: { id: fk_tree_id, leaf_count: layer_id }, "_method": "PATCH"}});
+  }
 
   //セーブボタンを押したときにセーブ完了表示
   $(document).on('click', '.save', function(){
@@ -167,6 +170,7 @@
         await set_params()
       }
       processAll()
+      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
  });
@@ -205,6 +209,7 @@
         await set_params()
       }
       processAll()
+      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
   });
@@ -242,6 +247,7 @@
         await set_params()
       }
       processAll()
+      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
   });
@@ -279,6 +285,7 @@
         await set_params()
       }
       processAll()
+      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
       
