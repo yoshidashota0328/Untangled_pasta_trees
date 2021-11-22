@@ -29,13 +29,13 @@ class LayersController < ApplicationController
   end
 
   def update
-    layer = Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
-    layer.update(layer_params)
+    @layer.update(layer_params)
     redirect_to tree_layers_path
   end
 
   def destroy
     @layer.destroy
+    redirect_to tree_layers_path
   end
 
   private
