@@ -4,12 +4,15 @@ class LayersController < ApplicationController
   skip_before_action :require_login, only: %i[index]
   def index
     tree = Tree.find(params[:tree_id]) 
-    gon.layers = tree.layers.all.order(:layer_id)
-    if current_user
-      gon.current_user = current_user.id
+    # 公開ツリー または 非公開ツリーでユーザがauthor
+    if tree.state == "public_tree" || tree.state == "private_tree" && current_user&.id == tree.user_id
+      gon.layers = tree.layers.all.order(:layer_id)
+      gon.current_user = current_user&.id
+      user_id = tree.user_id
+      @author = User.find(user_id)
+    else
+      redirect_back(fallback_location: trees_path)
     end
-    user_id = tree.user_id
-    @author = User.find(user_id)
   end
 
   def show; end
