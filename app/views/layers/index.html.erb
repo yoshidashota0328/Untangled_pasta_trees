@@ -19,8 +19,8 @@
   var tree_pos;
   var title_posX;
   var title_posY;
-  let before_parent_posX;
-  let before_parent_posY;
+  var before_parent_posX;
+  var before_parent_posY;
   var db_id = 1;
   var layer_id = 1;
   var q = 0;
@@ -32,6 +32,7 @@
   var easy_hide_id
   var fk_user_id;
   var fk_tree_id;
+  var flag = false;
   $(document).ready(function(){
     reposition();
   });
@@ -59,6 +60,9 @@
       }else if(elem.layer_id !== 1){
         db_id = elem.id;
         layer_id = elem.layer_id;
+        //if(elem.parent_id !== 1){
+        //  $("tooltip-id" + elem.parent_id + "").remove();
+        //}
         console.log(title_posX + elem.positionX); 
         var parent_posX = $('#posX' + elem.parent_id).val();
         var parent_posY = $('#posY' + elem.parent_id).val();
@@ -71,7 +75,7 @@
         var svg_height = Math.abs(leaf_posY - before_parent_posY);
         console.log("parent_posX" + parent_posX); 
         if(fk_user_id == gon.current_user){
-          $('.tree_title').after('<div class="leaf" style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" id="' + layer_id + '">' + elem.layer_id + '</br><form action="layers/' + db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '" value="' + elem.parent_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '" value="' + elem.positionY + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box" id="line' + layer_id + '" style="left: ' + before_parent_posX + 'px; top: ' + before_parent_posY + 'px;"></div>')
+          $('.tree_title').after('<div class="leaf" style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" id="' + layer_id + '">' + elem.layer_id + '</br><form action="layers/' + db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><button class="del" id="del-id' + layer_id + '" type="button">DELETE</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '" value="' + elem.parent_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '" value="' + elem.positionY + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box" id="line' + layer_id + '" style="left: ' + before_parent_posX + 'px; top: ' + before_parent_posY + 'px;"></div>')
         }else{
           $('.tree_title').after('<div class="leaf" style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" id="' + layer_id + '">' + elem.layer_id + '</br><form action="layers/' + db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '">' + elem.body + '</textarea></div></div></form></div><div class="line-box" id="line' + layer_id + '" style="left: ' + before_parent_posX + 'px; top: ' + before_parent_posY + 'px;"></div>')
         }
@@ -120,6 +124,15 @@
     message.innerText = "Data save completed";
     msgAnimation()
   });
+  //DELETEボタンを押したときにleafを削除
+  $(document).on('click', '.del', function(evt){
+    flag = window.confirm("Are you sure you want to delete this leaf?");
+    if(flag == true){
+      $.ajax({url: "layers/" + layer_id + "", type: "POST", data: {layer_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id, "_method": "DELETE"}})
+    }
+    flag = false;
+    evt.stopPropagation()
+  });
   //treetopのポジションをリセットする。
   $(document).on('click', '#treetop-pos-reset', function(){
     $.ajax({url: "layers/" + treetop_i +"", type: "POST", data: {positionX: 500, positionY: 30, layer_id: treetop_layer_id, user_id: fk_user_id, tree_id: fk_tree_id, "_method": "PATCH"}});
@@ -131,9 +144,23 @@
       'mouseenter' : function(evt) {
         this_id = $(this).attr('id');
         console.log("this_id" + this_id);
+        // 子leafがあればDELETEボタンを削除
+        let i = this_id;
+        outside:{
+          while(i<=layer_id){
+            let p = $("#parent" + i + "").val()
+            if(p == this_id){
+              $("#del-id" + this_id + "").remove();
+              console.log("del");
+              break outside;
+            }
+            console.log(i);
+            i++;
+          }
+        }
       }
     }, '.leaf');
-  })  
+  }) 
   //右下にボックスを作成
   $(document).on('click','#right-down-branch', function(evt){
       p1 = $(evt.target).closest(".leaf").position();
