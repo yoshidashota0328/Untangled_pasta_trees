@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_15_111859) do
+ActiveRecord::Schema.define(version: 2021_11_22_122843) do
 
   create_table "layers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_111859) do
     t.integer "tree_id"
     t.integer "layer_id"
     t.integer "db_id"
+    t.integer "del_flag", default: 0
     t.index ["tree_id"], name: "index_layers_on_tree_id"
     t.index ["user_id"], name: "index_layers_on_user_id"
   end

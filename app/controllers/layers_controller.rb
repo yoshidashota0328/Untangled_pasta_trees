@@ -8,8 +8,7 @@ class LayersController < ApplicationController
     if tree.state == "public_tree" || tree.state == "private_tree" && current_user&.id == tree.user_id
       gon.layers = tree.layers.all.order(:layer_id)
       gon.current_user = current_user&.id
-      user_id = tree.user_id
-      @author = User.find(user_id)
+      @author = User.find(tree.user_id)
     else
       redirect_back(fallback_location: trees_path)
     end
