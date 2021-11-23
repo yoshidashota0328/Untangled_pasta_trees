@@ -111,9 +111,12 @@
       message.classList.remove("fade-out");
     }, 4000);
   }
+  //読み込み完了時にleaf_countを送信
   window.onload = function () {
-    var leaf_count = $('.leaf').length;
-     $.ajax({url: "/trees/" + fk_tree_id +"", type: "POST", data: { tree: { id: fk_tree_id, leaf_count: leaf_count }, "_method": "PATCH"}});
+    if(gon.current_user){
+      var leaf_count = $('.leaf').length;
+      $.ajax({url: "/trees/" + fk_tree_id +"", type: "POST", data: { tree: { id: fk_tree_id, leaf_count: leaf_count }, "_method": "PATCH"}});
+    }
   }
 
   //セーブボタンを押したときにセーブ完了表示
