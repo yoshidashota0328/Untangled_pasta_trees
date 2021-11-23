@@ -22,7 +22,9 @@ skip_before_action :require_login, only: %i[index]
 
   def update
     if @tree.update(set_tree_params)
-      redirect_to request.referer, success: 'Update successful.'
+      unless request.referer&.include?("layers")
+        redirect_to request.referer, success: 'Update successful.'
+      end
     end
   end
 

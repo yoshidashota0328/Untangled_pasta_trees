@@ -60,9 +60,6 @@
       }else if(elem.layer_id !== 1){
         db_id = elem.id;
         layer_id = elem.layer_id;
-        //if(elem.parent_id !== 1){
-        //  $("tooltip-id" + elem.parent_id + "").remove();
-        //}
         console.log(title_posX + elem.positionX); 
         var parent_posX = $('#posX' + elem.parent_id).val();
         var parent_posY = $('#posY' + elem.parent_id).val();
@@ -114,8 +111,9 @@
       message.classList.remove("fade-out");
     }, 4000);
   }
-  function leafCount() {
-     $.ajax({url: "/trees/" + fk_tree_id +"", type: "POST", data: { tree: { id: fk_tree_id, leaf_count: layer_id }, "_method": "PATCH"}});
+  window.onload = function () {
+    var leaf_count = $('.leaf').length;
+     $.ajax({url: "/trees/" + fk_tree_id +"", type: "POST", data: { tree: { id: fk_tree_id, leaf_count: leaf_count }, "_method": "PATCH"}});
   }
 
   //セーブボタンを押したときにセーブ完了表示
@@ -195,7 +193,6 @@
         await set_params()
       }
       processAll()
-      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
  });
@@ -234,7 +231,6 @@
         await set_params()
       }
       processAll()
-      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
   });
@@ -272,7 +268,6 @@
         await set_params()
       }
       processAll()
-      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
   });
@@ -310,7 +305,6 @@
         await set_params()
       }
       processAll()
-      leafCount()
       $('.tooltip').hide();
       $('.easy-hide').hide();
       
