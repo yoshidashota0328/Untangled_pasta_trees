@@ -126,12 +126,10 @@
   });
   //DELETEボタンを押したときにleafを削除
   $(document).on('click', '.del', function(evt){
-    flag = window.confirm("Are you sure you want to delete this leaf?");
-    if(flag == true){
+    if(window.confirm("Are you sure you want to delete this leaf?")){
       $.ajax({url: "layers/" + layer_id + "", type: "POST", data: {layer_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id, "_method": "DELETE"}})
     }
-    flag = false;
-    evt.stopPropagation()
+    stopPropagation()
   });
   //treetopのポジションをリセットする。
   $(document).on('click', '#treetop-pos-reset', function(){
