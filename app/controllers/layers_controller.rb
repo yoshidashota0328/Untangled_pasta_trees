@@ -16,16 +16,11 @@ class LayersController < ApplicationController
 
   def show; end
 
-  def new
+  def create
     unless set_layer
       layer = Layer.new(layer_params)
       layer.save
     end
-  end
-
-  def create
-    @layer = @tree.layers.new(layer_params)
-    @layer.save
   end
 
   def update
