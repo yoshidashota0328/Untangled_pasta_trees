@@ -184,7 +184,7 @@
       var setX = 150;
       var setY = 200;
       const ajax_new = async function(){
-        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, setX: setX, setY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
         console.log("new action")
       }
       const create_leaf = async function(){
@@ -225,7 +225,7 @@
       var setX = -150;
       var setY = 200;
       const ajax_new = async function(){
-        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, setX: setX, setY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
       }
       const create_leaf = async function(){
         $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 150px; height: 200px;"></div>')
@@ -262,7 +262,7 @@
       var setX = 300;
       var setY = 0;
       const ajax_new = async function(){
-        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, setX: setX, setY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
       }
       const create_leaf = async function(){
         $(event.target).closest(".leaf").after('<div class="leaf right-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box right-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
@@ -299,7 +299,7 @@
       var setX = -300;
       var setY = 0;
       const ajax_new = async function(){
-        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, setX: setX, setY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+        $.ajax({url: "layers/new", type: "GET", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
       }
       const create_leaf = async function(){
         $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')

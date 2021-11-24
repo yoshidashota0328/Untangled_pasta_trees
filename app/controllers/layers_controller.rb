@@ -17,8 +17,8 @@ class LayersController < ApplicationController
   def show; end
 
   def new
-    unless Layer.find_by(layer_id: params[:layer_id], user_id: params[:user_id], tree_id: params[:tree_id])
-      layer = Layer.new(layer_id: params[:layer_id], positionX: params[:setX], positionY: params[:setY], parent_id: params[:parent_id], user_id: params[:user_id], tree_id: params[:tree_id])
+    unless set_layer
+      layer = Layer.new(layer_params)
       layer.save
     end
   end
