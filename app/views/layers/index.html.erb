@@ -3,6 +3,12 @@
   <div id="message"></div>
   <div id="author" class="card">Author:<%= @author.user_name %></div>
   <button id="treetop-pos-reset">treetop reset</button>
+  <div class="center">
+    <%= form_with url: tree_layers_path, method: :get, local: true do |f| %>
+      <%= f.search_field :search, placeholder: 'body search', class: "search" %>
+      <%= f.submit value: 'search', class: "button" %>
+    <% end %>
+  </div>
 </body>
 
 <script>
@@ -117,6 +123,11 @@
       var leaf_count = $('.leaf').length;
       $.ajax({url: "/trees/" + fk_tree_id +"", type: "POST", data: { tree: { id: fk_tree_id, leaf_count: leaf_count }, "_method": "PATCH"}});
     }
+    //検索にヒットしたleafを色変更
+    $.each(gon.search, function(index, elem){
+      var leaf = document.getElementById("" + elem.layer_id + "");
+      $(leaf).css('background-color','#dcedc1');
+    })
   }
 
   //セーブボタンを押したときにセーブ完了表示
