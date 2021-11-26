@@ -3,7 +3,8 @@ before_action :set_tree, only: %i[edit update destroy]
 skip_before_action :require_login, only: %i[index]
 
   def index
-    @trees = Tree.all.order(:id)
+    @q = Tree.ransack(params[:q])
+    @trees = @q.result.order(:id)
   end
 
   def new
