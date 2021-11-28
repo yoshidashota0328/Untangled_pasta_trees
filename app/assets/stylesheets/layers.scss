@@ -206,4 +206,16 @@ textarea{
   float: right;
   left: 60%;
 }
+#select-leaf{
+  position: fixed;
+  top: 7vh;
+  padding: 0;
+  height: 1.5vh;
+  font-size: 1.5vh;
+}
+#all-leaf-edit{
+  position: fixed;
+  top: 9vh;
+  border: solid 4px gray;
+}
 
