@@ -4,5 +4,6 @@
     <% @trees.each do |tree| %>
       <%= render partial: 'shared/tree', locals: { tree: tree } %>
     <% end %>
+    <%= paginate @trees %>
   <% end %>
 </div>

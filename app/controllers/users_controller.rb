@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @trees = current_user.trees.all.order(:id)
+    @trees = current_user.trees.all.order(:id).page(params[:page])
   end
 
   def create
