@@ -4,7 +4,7 @@ skip_before_action :require_login, only: %i[index]
 
   def index
     @q = Tree.ransack(params[:q])
-    @trees = @q.result.order(:id)
+    @trees = @q.result.order(:id).page(params[:page]).where(state: "public_tree")
   end
 
   def new
