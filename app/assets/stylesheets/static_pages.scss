@@ -1,50 +1,11 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.caption{
-  font-size: 5vh;
-}
-
-/*.translate{
-  animation: transAnime01 5s ease-out 0s infinite normal, transAnime02 5s ease-in 5s infinite normal, transAnime03 5s ease-out 10s infinite normal, transAnime04 5s ease-in 15s infinite normal; 
-}
-
-@keyframes transAnime01 {
-  0%{
-    transform: perspective(500px) translate3d(0px, 0px, 0px) rotateY(0deg);
-  }
-  100%{
-    transform: perspective(500px) translate3d(100px, 0px, 100px) rotateY(-105deg);
-  }
-}
-@keyframes transAnime02 {
-  0%{
-    transform: perspective(500px) translate3d(100px, 0px, 100px) rotateY(-105deg);
-  }
-  100%{
-    transform: perspective(500px) translate3d(0px, 0px, 200px) rotateY(-180deg);
-  }
-}
-@keyframes transAnime03 {
-  0%{
-    transform: perspective(500px) translate3d(0px, 0px, 200px) rotateY(-180deg);
-  }
-  100%{
-    transform: perspective(500px) translate3d(-100px, 0px, 100px) rotateY(-255deg);
-  }
-}
-@keyframes transAnime04 {
-  0%{
-    transform: perspective(500px) translate3d(100px, 0px, 100px) rotateY(-255deg);
-  }
-  100%{
-    transform: perspective(500px) translate3d(0px, 0px, 0px) rotateY(-360deg);
-  }*/@at-root
-
+//h1 tag animation
 .circle {
   margin: 0 auto;
-  width: 700px;  /* 円の直径となるため、文字数により調整 */
-  height: 700px;  /* 円の直径となるため、widthと同じ値に */
+  width: 1500px;  /* 円の直径となるため、文字数により調整 */
+  height: 1500px;  /* 円の直径となるため、widthと同じ値に */
   display: flex;
   justify-content: center;
   align-items: center;

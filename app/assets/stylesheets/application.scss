@@ -10,7 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 body{
@@ -24,6 +23,9 @@ div{
   text-align:center
 }
 h1{
+  font-size: 7vh;
+}
+h2{
   font-size: 7vh;
 }
 .card{
@@ -48,4 +50,7 @@ h1{
 }
 .button{
   font-size: 2vh;
+}
+.caption{
+  font-size: 5vh;
 }
