@@ -1,16 +1,16 @@
-<%= stylesheet_link_tag 'application' %>
-<%= stylesheet_link_tag 'users' %>
+<!--<%= stylesheet_link_tag 'application' %>
+<%= stylesheet_link_tag 'users' %>-->
 <div class="caption center">
-  <h1>Create_user</h1>
+  <h2>Create_user</h2>
   <%= form_with model: @user, local: true do |f| %>
     <%= f.label :user_name %></br>
-    <%= f.text_field :user_name, class: "text" %></br>
+    <%= f.text_field :user_name, class: "utext" %></br>
     <%= f.label :email %></br>
-    <%= f.text_field :email, class: "text" %></br>
+    <%= f.text_field :email, class: "utext" %></br>
     <%= f.label :password %></br>
-    <%= f.password_field :password, class: "text" %></br>
+    <%= f.password_field :password, class: "utext" %></br>
     <%= f.label :password_confirmation %></br>
-    <%= f.password_field :password_confirmation, class: "text" %></br>
-    <%= f.submit "create", class: "text" %>
+    <%= f.password_field :password_confirmation, class: "utext" %></br>
+    <%= f.submit "create", class: "utext" %>
   <% end %>
 </div>
