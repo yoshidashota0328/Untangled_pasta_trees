@@ -30,7 +30,8 @@
   100% { transform: rotate(0deg); }
 }
 
-h1 {
+.move {
+  font-size: 7vh;
   position: absolute;
   inset: 0;  /* top, right, bottom, leftを一括指定 */
   font-weight: 700;

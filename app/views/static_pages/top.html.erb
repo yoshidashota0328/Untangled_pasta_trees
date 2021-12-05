@@ -15,7 +15,7 @@ $(function () {
     
   let after = '';
   $.each(textArray,function(index,val){ // 配列の各文字をspanタグで囲み、繋げていく
-    after += "<h1>" + val + "</h1>";
+    after += '<div class="move">' + val + "</div>";
   });  
     
   before.html(after);  // 元のテキストに生成したタグごと置き換え
@@ -26,7 +26,7 @@ $(function () {
   const dist = circleR - fontH;
   const animTime = $('.text').css('animation-duration').slice(0, -1);  // アニメーション時間を取得し、「s」を切り捨て
     
-  $('h1').each(function(index) {
+  $('.move').each(function(index) {
     const num = index + 1;
     const radX = Math.sin(360 / textcnt * num * (Math.PI / 180)); // 文字の中心からのX軸方向の移動距離を計算
     const radY = Math.sin((90 - (360 / textcnt * num)) * (Math.PI / 180)); // 文字の中心からのY軸方向の移動距離（実際にはマイナス移動）を計算
