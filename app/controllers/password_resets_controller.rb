@@ -5,7 +5,7 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
     @user&.deliver_reset_password_instructions!
-    redirect_to login_path, success: t('.success')
+    redirect_to login_path, notice: 'I sent you an email.'
   end
 
   def edit
@@ -22,9 +22,9 @@ class PasswordResetsController < ApplicationController
 
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
-      redirect_to login_path, succese: t('.succese')
+      redirect_to login_path, notice: 'Update successful.'
     else 
-      flash.now[:danger] = t('.fail')
+      flash.now[:notice] = 'Password does not match'
       render :edit
     end
   end

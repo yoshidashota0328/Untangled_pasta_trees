@@ -1,10 +1,12 @@
-<h1>PasswordResets#edit</h1>
-<%= form_with model: @user, url: password_reset_path(@token), method: :put do |f| %>
-  <%= f.label :email %>
-  <%= @user.email %>
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
-  <%= f.submit '更新', class: 'btn btn-primary' %>
-<% end %>
+<div class="caption center">
+  <h1>Password_reset</h1>
+  <%= form_with model: @user, url: password_reset_path(@token), method: :put do |f| %>
+    <%= f.label :email %>
+    <%= @user.email %></br>
+    <%= f.label :password %></br>
+    <%= f.password_field :password, class: 'form-control utext' %></br>
+    <%= f.label :password_confirmation %></br>
+    <%= f.password_field :password_confirmation, class: 'form-control utext' %></br>
+    <%= f.submit 'update', class: 'btn btn-primary utext' %>
+  <% end %>
+</div>
