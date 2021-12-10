@@ -54,6 +54,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'heavens_door'
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -74,4 +75,3 @@ gem 'ransack'
 gem 'kaminari'
 gem 'bullet'
 gem 'config'
-gem 'letter_opener_web'
