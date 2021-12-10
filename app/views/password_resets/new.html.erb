@@ -1,0 +1,8 @@
+<div class="center">
+  <h1>Find_your_email</h1>
+  <%= form_with url: password_resets_path, local: true do |f| %>
+    <%= f.label :email%>
+    <%= f.text_field :email, class: "utext"%> 
+    <%= f.submit 'submit', class: 'btn btn-primary utext' %>
+  <% end %>
+</div>
