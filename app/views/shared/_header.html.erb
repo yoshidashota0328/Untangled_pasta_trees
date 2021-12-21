@@ -1,7 +1,7 @@
 <header>
   <div class="header-div">
-    <div id="user_name" class="card">User:<%= link_to current_user.user_name, user_path(current_user), :style=>"color:black;" %></div>
-    <%= link_to 'Logout', logout_path, id: "log", method: :delete, class: "card" %>
-    <%= link_to 'Top', root_path, id: "top", class: "card" %>
+    <div id="user_name" class="link-text">User:<%= link_to current_user.user_name, user_path(current_user), :style=>"color:black;" %></div>
+    <%= link_to 'Logout', logout_path, id: "log", method: :delete, class: "link-text" %>
+    <%= link_to 'Top', root_path, id: "top", class: "link-text" %>
   </div>
 </header>

@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  validates :password, confirmation: true
   has_many :layers, dependent: :destroy 
   has_many :trees, dependent: :destroy 
+  validates :password, confirmation: true
   validates :email, presence: true, uniqueness: true
   validates :reset_password_token, uniqueness: true, allow_nil: true
   def mine?(object)

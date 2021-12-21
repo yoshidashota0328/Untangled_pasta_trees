@@ -49,6 +49,11 @@ easymde@^2.15.0:
     codemirror-spell-checker "1.1.2"
     marked "^2.0.3"
 
+jparticles@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/jparticles/-/jparticles-3.4.0.tgz#3993f976d2862df2e12f6b5014a4c09266dbe1e8"
+  integrity sha512-95d9W2vkRTNZzg9wUONO9ir5xQYSjtBi0BU6mrQnCG61ckIzKRgt1aeQpRu93FHjgX+3XGRNTyo2HfQFOExdaQ==
+
 marked@*:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.6.tgz#cd199503102b6807354f00574348d41ad4fd25d2"

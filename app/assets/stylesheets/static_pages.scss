@@ -44,3 +44,8 @@
   25% { opacity: 1; }  // 文字が一番手前（正面）に来た時 
   75%{ opacity: 0; }// 文字が裏面に来た時 
 }
+.particle{
+  height: 500px;
+  width: 500px;
+  position: absolute;
+}
