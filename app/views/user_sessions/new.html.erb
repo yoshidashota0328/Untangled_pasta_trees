@@ -2,11 +2,11 @@
   <h1>Login</h1>
   <%= form_with model: @user, local: true do |f| %>
     <%= f.label :email %></br>
-    <%= f.text_field :email, class: "utext" %></br>
+    <%= f.text_field :email, class: "utext font" %></br>
     <%= f.label :password %></br>
-    <%= f.password_field :password, class: "utext" %></br>
-    <%= f.submit 'login', class: "utext" %>
+    <%= f.password_field :password, class: "utext font" %></br>
+    <%= f.submit 'login', class: "utext font" %>
   <% end %>
-  <%= link_to 'Create_user', new_user_path %></br>
-  <%= link_to ('Forgot_password?'), new_password_reset_path %>
+  <%= link_to 'Create_user', new_user_path, class: "link-text" %></br>
+  <%= link_to ('Forgot_password?'), new_password_reset_path, class: "link-text" %>
 </div>

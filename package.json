@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "easymde": "^2.15.0",
+    "jparticles": "^3.4.0",
     "simplemde": "^1.11.2"
   }
 }

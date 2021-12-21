@@ -16,6 +16,7 @@
 body{
   margin-left: 0px;
   margin-top: 0px;
+  font-family: 'Alegreya Sans SC', sans-serif, 'Noto Sans JP', sans-serif;
 }
 div{
   font-size: 2vh;
@@ -34,6 +35,11 @@ h1{
   display: inline-block;
   text-decoration: none;
 }
+.link-text{
+  color: gray;
+  display: inline-block;
+  text-decoration: none;
+}
 .float-right{
   float: right;
   margin-right: 5vh;
@@ -47,9 +53,17 @@ h1{
   width: 20vh;
   font-size: 2.5vh;
 }
-.button{
+.font{
   font-size: 2vh;
+  font-family: 'Alegreya Sans SC', sans-serif, 'Noto Sans JP', sans-serif;
 }
 .caption{
   font-size: 5vh;
 }
+.title-text{
+  font-size: 3vh;
+}
+::placeholder{
+  font-family: 'Alegreya Sans SC', sans-serif, 'Noto Sans JP', sans-serif;
+}
+
