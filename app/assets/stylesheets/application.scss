@@ -16,7 +16,7 @@
 body{
   margin-left: 0px;
   margin-top: 0px;
-  font-family: 'Alegreya Sans SC', sans-serif, 'Noto Sans JP', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif, 'Alegreya Sans SC', sans-serif;
 }
 div{
   font-size: 2vh;
@@ -56,6 +56,10 @@ h1{
 .font{
   font-size: 2vh;
   font-family: 'Alegreya Sans SC', sans-serif, 'Noto Sans JP', sans-serif;
+}
+.font-noto{
+  font-size: 2vh;
+  font-family: 'Noto Sans JP', sans-serif, 'Alegreya Sans SC', sans-serif;
 }
 .caption{
   font-size: 5vh;
