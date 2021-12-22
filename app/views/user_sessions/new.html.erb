@@ -2,9 +2,9 @@
   <h1>Login</h1>
   <%= form_with model: @user, local: true do |f| %>
     <%= f.label :email %></br>
-    <%= f.text_field :email, class: "utext font" %></br>
+    <%= f.text_field :email, class: "utext font-noto" %></br>
     <%= f.label :password %></br>
-    <%= f.password_field :password, class: "utext font" %></br>
+    <%= f.password_field :password, class: "utext font-noto" %></br>
     <%= f.submit 'login', class: "utext font" %>
   <% end %>
   <%= link_to 'Create_user', new_user_path, class: "link-text" %></br>
