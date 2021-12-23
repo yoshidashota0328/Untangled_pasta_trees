@@ -70,4 +70,8 @@ h1{
 ::placeholder{
   font-family: 'Alegreya Sans SC', sans-serif, 'Noto Sans JP', sans-serif;
 }
+.bgimage{
+  z-index: -1;
+  position: absolute;
+}
 

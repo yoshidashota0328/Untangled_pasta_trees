@@ -44,8 +44,20 @@
   25% { opacity: 1; }  // 文字が一番手前（正面）に来た時 
   75%{ opacity: 0; }// 文字が裏面に来た時 
 }
-.particle{
-  height: 500px;
-  width: 500px;
+div.particle{
+  animation: particle 20s linear 0s infinite normal ;
+  z-index: -3;
   position: absolute;
+}
+
+@keyframes particle {
+  0%{
+    opacity: 0;
+  }
+  5%{
+    opacity: 1;
+  }
+  100%{
+    transform: translateX(100vw);
+  }
 }

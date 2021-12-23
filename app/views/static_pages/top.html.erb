@@ -1,5 +1,6 @@
 <div class="center">
   <div class="circle">
+  <!--<img class="bgimage" src='https://gyazo.com/8f1a0854812d2efb856eeef514f6e646/raw'>-->
     <div class="inner"> <!-- 文字配置の基準となる親要素 -->
       <p class="text">Untangled pasta trees </p>
     </div>
@@ -10,6 +11,7 @@
 </div>
 <script>
 $(function () {
+  var availHeight = window.screen.availHeight;
   const before = $('.text');
   const text = before.text(); // 文字をspanタグで囲む前のテキストを取得
   const textArray = text.split('');  // 取得したテキストを1文字ずつに分割し配列にして変数に格納
@@ -35,5 +37,35 @@ $(function () {
                 'animation-delay': animTime / textcnt * num + 's', // 1文字ずつアニメーション開始時間を遅延
                   });  //
   });
+  // 2つの値の間のランダムな整数を得る
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }
+  // アルファベットをランダム作成してランダムに動かす
+  var particle = function particle() {
+    // 生成する文字列の長さ
+    var l = 1;
+
+    // 生成する文字列に含める文字セット
+    var c = "abcdefghijklmnopqrstuvwxyz";
+
+    var cl = c.length;
+    var r = "";
+    for(var i=0; i<l; i++){
+      r += c[Math.floor(Math.random()*cl)];
+    }
+    var y = getRandomInt(0, availHeight)
+    var size = getRandomInt(10, 30)
+    $('body').append('<div class="particle" style="font-size: ' + size + 'px; top: ' + y + 'px;">' + r + '</div>')
+  }
+  var i = 1;
+  var particleLoop = setInterval(function() {
+    particle()
+    i++;
+    if(i > 50) clearInterval(particleLoop);  
+  }, 1000);
+
 });
 </script>
