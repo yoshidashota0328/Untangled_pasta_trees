@@ -11,7 +11,7 @@
 </div>
 <script>
 $(function () {
-  var availHeight = window.screen.availHeight;
+  var availWidth = window.screen.width;
   const before = $('.text');
   const text = before.text(); // 文字をspanタグで囲む前のテキストを取得
   const textArray = text.split('');  // 取得したテキストを1文字ずつに分割し配列にして変数に格納
@@ -49,23 +49,23 @@ $(function () {
     var l = 1;
 
     // 生成する文字列に含める文字セット
-    var c = "abcdefghijklmnopqrstuvwxyz";
+    var c = "abcdefghijklmnopqrstuvwxyzABΓΔEZHΘIKΛMNΞOΠPΣTΥΦXΨΩ1234567890";
 
     var cl = c.length;
     var r = "";
     for(var i=0; i<l; i++){
       r += c[Math.floor(Math.random()*cl)];
     }
-    var y = getRandomInt(0, availHeight)
+    var x = getRandomInt(0, availWidth)
     var size = getRandomInt(10, 30)
-    $('body').append('<div class="particle" style="font-size: ' + size + 'px; top: ' + y + 'px;">' + r + '</div>')
+    $('body').append('<div class="particle text-blur" style="font-size: ' + size + 'px; left: ' + x + 'px;">' + r + '</div>')
   }
   var i = 1;
   var particleLoop = setInterval(function() {
     particle()
     i++;
-    if(i > 50) clearInterval(particleLoop);  
-  }, 1000);
+    if(i > 200) clearInterval(particleLoop);  
+  }, 100);
 
 });
 </script>
