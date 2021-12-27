@@ -20,8 +20,8 @@ skip_before_action :require_login, only: %i[index]
       layer.save!
       redirect_to tree_layers_path(@tree.id)
     else
-      flash[:danger] = "Create failure.Title and description are limited to 10 characters."
-      redirect_to new_tree_path
+      flash.now[:danger] = "Create failure.Title and description are limited to 10 characters."
+      render :new
     end
   end
 
@@ -32,7 +32,7 @@ skip_before_action :require_login, only: %i[index]
       end
     else
       flash[:danger] = "Update failure.Title and description are limited to 10 characters."
-      redirect_to edit_tree_path
+      render :new
     end
   end
 

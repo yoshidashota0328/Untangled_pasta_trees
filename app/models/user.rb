@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :trees, dependent: :destroy 
   validates :password, confirmation: true
   validates :email, presence: true, uniqueness: true
+  validates :user_name, presence: true, uniqueness: true, length: { maximum: 10 }
   validates :reset_password_token, uniqueness: true, allow_nil: true
   def mine?(object)
     # 呼び出し元のオブジェクトのIDを示す self.id を省略した記法。

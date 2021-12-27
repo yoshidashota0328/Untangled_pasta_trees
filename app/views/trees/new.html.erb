@@ -1,6 +1,7 @@
 <div class="caption center">
   <h1>new_tree</h1>
   <%= form_with model: @tree, local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :title %></br>
     <%= f.text_field :title, class: "utext font-noto" %></br>
     <%= f.label :description %></br>

@@ -49,6 +49,7 @@ div.particle{
   z-index: 3;
   position: absolute;
   top: 0px;
+  pointer-events: none;
 }
 
 @keyframes particle {
