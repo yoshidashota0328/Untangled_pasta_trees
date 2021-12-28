@@ -1,18 +1,6 @@
 // Place all the styles related to the user_sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#log{
-  float: right;
-  font-size: 2vh;
-  position: fixed;
-  left: 90%;
-}
-#top{
-  float: right;
-  font-size: 2vh;
-  position: fixed;
-  left: 82%;
-}
 
 .header-div{
   display: block;
@@ -21,9 +9,4 @@
 input.utext{
   height: 5vh;
   font-size: 4vh;
-}
-#user_name{
-  position: fixed;
-  float: right;
-  left: 70%;
 }

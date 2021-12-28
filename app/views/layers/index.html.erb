@@ -4,7 +4,7 @@
   <div id="author" class="link-text">Author:<%= @author.user_name %></div>
   <!--<button id="treetop-pos-reset">treetop reset</button>-->
   <input type="text" id="select-leaf" placeholder="Enter leaf_id">
-  <div class="center">
+  <div id="body-search">
     <%= form_with url: tree_layers_path, method: :get, local: true do |f| %>
       <%= f.search_field :search, placeholder: 'body search', class: "search" %>
       <%= f.submit value: 'search', class: "button" %>
