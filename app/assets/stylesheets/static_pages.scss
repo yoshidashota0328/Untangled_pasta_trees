@@ -44,7 +44,7 @@
   25% { opacity: 1; }  // 文字が一番手前（正面）に来た時 
   75%{ opacity: 0; }// 文字が裏面に来た時 
 }
-div.particle{
+.particle{
   animation: particle 20s linear 0s infinite normal ;
   position: absolute;
   top: 0px;
@@ -67,8 +67,3 @@ div.particle{
     opacity: 0;
   }
 }
-/*.text-blur {
-  //color: transparent;
-  color: white;
-  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
-}*/

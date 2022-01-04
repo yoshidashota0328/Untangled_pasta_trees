@@ -7,7 +7,7 @@
   <% if current_user.id == tree.user_id %>
     <%= link_to "edit", edit_tree_path(tree), class: "card float-left" %>
     <% if tree.state == "public_tree" %>
-      <%= link_to "public_tree", tree_path(tree, params: { tree: { state: "private_tree" }}), method: :patch, class: "card" %>
+      <%= link_to "public_tree", tree_path(tree, params: { tree: { state: "private_tree" }}), method: :patch, class: "card bg-green" %>
     <% elsif tree.state == "private_tree" %>
       <%= link_to "private_tree", tree_path(tree, params: { tree: { state: "public_tree"}}), method: :patch, class: "card" %>
     <% end %>

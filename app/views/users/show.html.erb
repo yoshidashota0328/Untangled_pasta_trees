@@ -1,5 +1,6 @@
 <div class="center">
   <h1>My_trees</h1>
+  <%= link_to 'Edit_user', edit_user_path, class: "link-text caption card" %></br>
   <% if @trees.present? %>
     <% @trees.each do |tree| %>
       <%= render partial: 'shared/tree', locals: { tree: tree } %>

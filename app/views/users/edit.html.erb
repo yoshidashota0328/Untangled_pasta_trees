@@ -1,0 +1,12 @@
+<div class="caption center">
+  <h1>Edit_user</h1>
+  <%= form_with model: @user, local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :email %></br>
+    <%= f.text_field :email, class: "utext font-noto" %></br>
+    <%= f.label :password %></br>
+    <%= f.text_field :password, class: "utext font-noto" %></br>
+    <%= f.submit 'edit', class: "utext font" %></br>
+    <%= link_to "delete your account", user_path(@user), class: "card", method: :delete, data: { confirm: 'Are you sure you want to delete your account?' } %>
+  <% end %> 
+</div>

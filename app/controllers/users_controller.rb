@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[edit update destroy]
   skip_before_action :require_login, only: %i[new create]
   
   def index; end
@@ -11,6 +12,8 @@ class UsersController < ApplicationController
     @trees = current_user.trees.all.order(:id).page(params[:page])
   end
 
+  def edit; end
+
   def create
     @user = User.new(user_params)
 
@@ -22,7 +25,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user.update(user_params)
+    redirect_to user_path(current_user)
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to root_path, success: 'Your account has been deleted.'
+  end
+
   private
+
+  def set_user
+    @user = current_user
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :user_name)  
