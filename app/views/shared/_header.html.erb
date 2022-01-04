@@ -1,6 +1,6 @@
 <header>
   <div class="header-div">
-    <div id="user_name" class="link-text">User:<%= link_to current_user.user_name, user_path(current_user), :style=>"color:black;" %></div>
+    <%= link_to "user:#{current_user.user_name}", user_path(current_user),id: "my-page", class: "link-text" %>
     <%= link_to 'Logout', logout_path, id: "log", method: :delete, class: "link-text" %>
     <%= link_to 'Top', root_path, id: "top", class: "link-text" %>
     <%= link_to 'All_trees', trees_path, id: "all-trees", class: "link-text" %>
