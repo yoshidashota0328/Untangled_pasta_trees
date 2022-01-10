@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tree do
-    title { "hoge" }
+    title { "piyo" }
     description { "fuga" }
     state { "public_tree" }
   end
