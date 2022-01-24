@@ -2,7 +2,6 @@
   <div class="client"></div>
   <div id="message"></div>
   <div id="author" class="link-text">Author:<%= @author.user_name %></div>
-  <!--<button id="treetop-pos-reset">treetop reset</button>-->
   <input type="text" id="select-leaf" placeholder="Enter leaf_id">
   <div id="body-search">
     <%= form_with url: tree_layers_path, method: :get, local: true do |f| %>
@@ -14,7 +13,6 @@
 
 <script>
   //グローバル変数
-  //$('.tooltip').hide();
   var p1;
   var p2;
   var pX1;
@@ -49,23 +47,23 @@
   function reposition(){
     $.each(gon.layers, function(index, elem){
       if(elem.layer_id == 1){
-          treetop_i = elem.id;
-          treetop_layer_id = elem.layer_id
-          layer_id = elem.layer_id;
-          fk_user_id = elem.user_id
-          fk_tree_id = elem.tree_id
-          title_posX = elem.positionX;
-          title_posY = elem.positionY;
-          before_parent_posX = title_posX;
-          before_parent_posY = title_posY;
-          if(fk_user_id == gon.current_user){
-            $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><input type="text" class="not" name="positionX" id="posX1" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY1" value="' + elem.positionY + '"></br><div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div></div>')
-          }else{
-            $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></div></form></div></div>')
-          } 
-          $('.tooltip').hide();
-          $('#easy-hide1').hide();
-          eazy_mde['easyMDE1'] = new EasyMDE({element: document.getElementById('leaf-body' + fk_user_id + fk_tree_id + '1'), maxHeight: "550px", autosave: {enabled: true, uniqueId: "leaf-body" + fk_user_id + fk_tree_id + "1", delay: 500, submit_delay: 5000,}});
+        treetop_i = elem.id;
+        treetop_layer_id = elem.layer_id
+        layer_id = elem.layer_id;
+        fk_user_id = elem.user_id
+        fk_tree_id = elem.tree_id
+        title_posX = elem.positionX;
+        title_posY = elem.positionY;
+        before_parent_posX = title_posX;
+        before_parent_posY = title_posY;
+        if(fk_user_id == gon.current_user){
+          $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><input type="text" class="not" name="positionX" id="posX1" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY1" value="' + elem.positionY + '"></br><div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div></div>')
+        }else{
+          $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></div></form></div></div>')
+        } 
+        $('.tooltip').hide();
+        $('#easy-hide1').hide();
+        eazy_mde['easyMDE1'] = new EasyMDE({element: document.getElementById('leaf-body' + fk_user_id + fk_tree_id + '1'), maxHeight: "550px", autosave: {enabled: true, uniqueId: "leaf-body" + fk_user_id + fk_tree_id + "1", delay: 500, submit_delay: 5000,}});
       }else if(elem.layer_id !== 1){
         db_id = elem.id;
         layer_id = elem.layer_id;
@@ -174,10 +172,6 @@
       $("#parent" + select_leaf).val('');
     }
   });
-  //treetopのポジションをリセットする。
-  $(document).on('click', '#treetop-pos-reset', function(){
-    $.ajax({url: "layers/" + treetop_i +"", type: "POST", data: {positionX: 500, positionY: 30, layer_id: treetop_layer_id, user_id: fk_user_id, tree_id: fk_tree_id, "_method": "PATCH"}});
-  });
 
   //マウスオーバーでid取得
   $(function(){
@@ -204,155 +198,154 @@
   }) 
   //右下にボックスを作成
   $(document).on('click','#right-down-branch', function(evt){
-      p1 = $(evt.target).closest(".leaf").position();
-      var parent_elem = (evt.target).closest(".leaf");
-      var parent_id = $(parent_elem).attr('id');
-      var parent_all_pos = $('#' + parent_id).position();
-      var parent_posX = parent_all_pos.left;
-      var parent_posY = parent_all_pos.top;
-      layer_id++;
-      pX1 = parent_posX + 150;
-      pY1 = parent_posY + 200;
-      var line_left = parent_posX + 105;
-      var line_top = parent_posY + 70;
-      var setX = 150;
-      var setY = 200;
-      const ajax_new = async function(){
-        $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
-        console.log("new action")
-      }
-      const create_leaf = async function(){
-        $(event.target).closest(".leaf").after('<div class="leaf right-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/new" method="GET"><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button type="button" id="left-branch">+</button><button type="button" id="left-down-branch">+</button><button type="button" id="right-down-branch">+</button><button type="button" id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box right-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 150px; height: 200px;"></div>')
-        eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
-        console.log("create leaf" + gon.db_id)
-      }
-      const set_params = async function(){
-        $("#posX" + layer_id).val(150);
-        $("#posY" + layer_id).val(200);
-        $("#parent" + layer_id).val(this_id);
-        console.log("set params")
-      }
-      const processAll = async function() {
-        await ajax_new()
-        await create_leaf()
-        await set_params()
-      }
-      processAll()
-      $('.tooltip').hide();
-      $('.easy-hide').hide();
- });
+    p1 = $(evt.target).closest(".leaf").position();
+    var parent_elem = (evt.target).closest(".leaf");
+    var parent_id = $(parent_elem).attr('id');
+    var parent_all_pos = $('#' + parent_id).position();
+    var parent_posX = parent_all_pos.left;
+    var parent_posY = parent_all_pos.top;
+    layer_id++;
+    pX1 = parent_posX + 150;
+    pY1 = parent_posY + 200;
+    var line_left = parent_posX + 105;
+    var line_top = parent_posY + 70;
+    var setX = 150;
+    var setY = 200;
+    //const ajax_new = async function(){
+      $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+      console.log("new action")
+    //}
+    /*const create_leaf = async function(){
+      $(event.target).closest(".leaf").after('<div class="leaf right-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/new" method="GET"><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button type="button" id="left-branch">+</button><button type="button" id="left-down-branch">+</button><button type="button" id="right-down-branch">+</button><button type="button" id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box right-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 150px; height: 200px;"></div>')
+      eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
+      console.log("create leaf" + gon.db_id)
+    }
+    const set_params = async function(){
+      $("#posX" + layer_id).val(150);
+      $("#posY" + layer_id).val(200);
+      $("#parent" + layer_id).val(this_id);
+      console.log("set params")
+    }
+    const processAll = async function() {
+      await ajax_new()
+      await create_leaf()
+      await set_params()
+    }
+    processAll()*/
+    $('.tooltip').hide();
+    $('.easy-hide').hide();
+  });
   //左下にボックスを作成
   $(document).on('click','#left-down-branch', function(evt){
-      p1 = $(evt.target).closest(".leaf").position();
-      var parent_elem = (evt.target).closest(".leaf");
-      var parent_id = $(parent_elem).attr('id');
-      console.log("parent_id" + parent_id);
-      var parent_all_pos = $('#' + parent_id).position();
-      var parent_posX = parent_all_pos.left;
-      var parent_posY = parent_all_pos.top;
-      console.log(p1);
-      layer_id++;
-      pX1 = parent_posX - 150;
-      pY1 = parent_posY + 200;
-      var line_left = parent_posX - 45;
-      var line_top = parent_posY + 70;
-      var setX = -150;
-      var setY = 200;
-      const ajax_new = async function(){
-        $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
-      }
-      const create_leaf = async function(){
-        $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 150px; height: 200px;"></div>')
-        eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
-      }
-      const set_params = async function(){
-        $("#posX" + layer_id).val(-150);
-        $("#posY" + layer_id).val(200);
-        $("#parent" + layer_id).val(this_id);
-      }
-      const processAll = async function() {
-        await ajax_new()
-        await create_leaf()
-        await set_params()
-      }
-      processAll()
-      $('.tooltip').hide();
-      $('.easy-hide').hide();
+    p1 = $(evt.target).closest(".leaf").position();
+    var parent_elem = (evt.target).closest(".leaf");
+    var parent_id = $(parent_elem).attr('id');
+    console.log("parent_id" + parent_id);
+    var parent_all_pos = $('#' + parent_id).position();
+    var parent_posX = parent_all_pos.left;
+    var parent_posY = parent_all_pos.top;
+    console.log(p1);
+    layer_id++;
+    pX1 = parent_posX - 150;
+    pY1 = parent_posY + 200;
+    var line_left = parent_posX - 45;
+    var line_top = parent_posY + 70;
+    var setX = -150;
+    var setY = 200;
+    //const ajax_new = async function(){
+      $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+    //}
+    /*const create_leaf = async function(){
+      $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 150px; height: 200px;"></div>')
+      eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
+    }
+    const set_params = async function(){
+      $("#posX" + layer_id).val(-150);
+      $("#posY" + layer_id).val(200);
+      $("#parent" + layer_id).val(this_id);
+    }
+    const processAll = async function() {
+      await ajax_new()
+      await create_leaf()
+      await set_params()
+    }
+    processAll()*/
+    $('.tooltip').hide();
+    $('.easy-hide').hide();
   });
   //右
   $(document).on('click','#right-branch', function(evt){
-      p1 = $(evt.target).closest(".leaf").position();
-      var parent_elem = (evt.target).closest(".leaf");
-      var parent_id = $(parent_elem).attr('id');
-      console.log("parent_id" + parent_id);
-      var parent_all_pos = $('#' + parent_id).position();
-      var parent_posX = parent_all_pos.left;
-      var parent_posY = parent_all_pos.top;
-      layer_id++;
-      pX1 = parent_posX + 300;
-      pY1 = parent_posY;
-      var line_left = parent_posX;
-      var line_top = parent_posY + 70;
-      var setX = 300;
-      var setY = 0;
-      const ajax_new = async function(){
-        $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
-      }
-      const create_leaf = async function(){
-        $(event.target).closest(".leaf").after('<div class="leaf right-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box right-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
-        eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
-      }
-      const set_params = async function(){
-        $("#posX" + layer_id).val(300);
-        $("#posY" + layer_id).val(0);
-        $("#parent" + layer_id).val(this_id);
-      }
-      const processAll = async function() {
-        await ajax_new()
-        await create_leaf()
-        await set_params()
-      }
-      processAll()
-      $('.tooltip').hide();
-      $('.easy-hide').hide();
+    p1 = $(evt.target).closest(".leaf").position();
+    var parent_elem = (evt.target).closest(".leaf");
+    var parent_id = $(parent_elem).attr('id');
+    console.log("parent_id" + parent_id);
+    var parent_all_pos = $('#' + parent_id).position();
+    var parent_posX = parent_all_pos.left;
+    var parent_posY = parent_all_pos.top;
+    layer_id++;
+    pX1 = parent_posX + 300;
+    pY1 = parent_posY;
+    var line_left = parent_posX;
+    var line_top = parent_posY + 70;
+    var setX = 300;
+    var setY = 0;
+    //const ajax_new = async function(){
+      $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+    //}
+    /*const create_leaf = async function(){
+      $(event.target).closest(".leaf").after('<div class="leaf right-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<form action="layers/' + gon.db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box right-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
+      eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
+    }
+    const set_params = async function(){
+      $("#posX" + layer_id).val(300);
+      $("#posY" + layer_id).val(0);
+      $("#parent" + layer_id).val(this_id);
+    }
+    const processAll = async function() {
+      await ajax_new()
+      await create_leaf()
+      await set_params()
+    }
+    processAll()*/
+    $('.tooltip').hide();
+    $('.easy-hide').hide();
   });
   //左
   $(document).on('click','#left-branch', function(evt){
-      p1 = $(evt.target).closest(".leaf").position();
-      var parent_elem = (evt.target).closest(".leaf");
-      var parent_id = $(parent_elem).attr('id');
-      console.log("parent_id" + parent_id);
-      var parent_all_pos = $('#' + parent_id).position();
-      var parent_posX = parent_all_pos.left;
-      var parent_posY = parent_all_pos.top;
-      layer_id++;
-      pX1 = parent_posX - 300;
-      pY1 = parent_posY;
-      var line_left = parent_posX - 300;
-      var line_top = parent_posY + 70;
-      var setX = -300;
-      var setY = 0;
-      const ajax_new = async function(){
-        $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
-      }
-      const create_leaf = async function(){
-        $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
-        eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
-      }
-      const set_params = async function(){
-        $("#posX" + layer_id).val(-300);
-        $("#posY" + layer_id).val(0);
-        $("#parent" + layer_id).val(this_id);
-      }
-      const processAll = async function() {
-        await ajax_new()
-        await create_leaf()
-        await set_params()
-      }
-      processAll()
-      $('.tooltip').hide();
-      $('.easy-hide').hide();
-      
+    p1 = $(evt.target).closest(".leaf").position();
+    var parent_elem = (evt.target).closest(".leaf");
+    var parent_id = $(parent_elem).attr('id');
+    console.log("parent_id" + parent_id);
+    var parent_all_pos = $('#' + parent_id).position();
+    var parent_posX = parent_all_pos.left;
+    var parent_posY = parent_all_pos.top;
+    layer_id++;
+    pX1 = parent_posX - 300;
+    pY1 = parent_posY;
+    var line_left = parent_posX - 300;
+    var line_top = parent_posY + 70;
+    var setX = -300;
+    var setY = 0;
+    //const ajax_new = async function(){
+      $.ajax({url: "layers", type: "POST", data: {layer_id: layer_id, positionX: setX, positionY: setY, parent_id: this_id, user_id: fk_user_id, tree_id: fk_tree_id}});
+    //}
+    /*const create_leaf = async function(){
+      $(event.target).closest(".leaf").after('<div class="leaf left-down" id="' + layer_id + '" style="left: ' + pX1 + 'px; top: ' + pY1 + 'px;">' + layer_id + '<input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + gon.db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button class="close-window">×</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '"></textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box left-down-line" id="line' + layer_id + '" style="left: ' + line_left + 'px; top: ' + line_top + 'px; width: 300px; height: 0px;"></div>')
+      eazy_mde['easyMDE' + layer_id] = new EasyMDE({element: document.getElementById("leaf-body" + fk_user_id + fk_tree_id + layer_id + ""), maxHeight: "550px"});
+    }
+    const set_params = async function(){
+      $("#posX" + layer_id).val(-300);
+      $("#posY" + layer_id).val(0);
+      $("#parent" + layer_id).val(this_id);
+    }
+    const processAll = async function() {
+      await ajax_new()
+      await create_leaf()
+      await set_params()
+    }
+    processAll()*/
+    $('.tooltip').hide();
+    $('.easy-hide').hide();
   });
   //マウスポインターの現在地表示
   $(window).mousemove(function(e) {
@@ -387,64 +380,63 @@
         $("#posY").val(pY3);
         mc++;
       }
-        //ドラッグ判定（ドラッグしてない場合）
-          if(drag_flg == false) {
+      //ドラッグ判定（ドラッグしてない場合）
+      if(drag_flg == false) {
 
-              //要素の位置取得
-              pos1 = $(".tree-wrapper").position();
-              //要素位置を取得して修正値を計算
-              posX1 = evt1.clientX - pos1.left;
-              posY1 = evt1.clientY - pos1.top;
-    
-              //ドラッグ中にする
-              drag_flg = true;
-              //要素のテキストを変更
-    
-          //ドラッグ中の場合
-          } else if(drag_flg == true) {
-    
-              //要素のドラッグを解除
-              drag_flg = false;
-              //要素のテキストを変更
-              
-          }
-    });
- 
-    //要素上でマウスボタンが離された場合
-    $(document).mouseup(function() {
+        //要素の位置取得
+        pos1 = $(".tree-wrapper").position();
+        //要素位置を取得して修正値を計算
+        posX1 = evt1.clientX - pos1.left;
+        posY1 = evt1.clientY - pos1.top;
+
+        //ドラッグ中にする
+        drag_flg = true;
+        //要素のテキストを変更
+
+      //ドラッグ中の場合
+      } else if(drag_flg == true) {
+
         //要素のドラッグを解除
         drag_flg = false;
         //要素のテキストを変更
         
+      }
+    });
+ 
+    //要素上でマウスボタンが離された場合
+    $(document).mouseup(function() {
+      //要素のドラッグを解除
+      drag_flg = false;
+      //要素のテキストを変更
     });
 
     //ドキュメント上でマウスポインタが動いた場合
     $(document).mousemove(function(evt2) {
-        //ドラッグ中の場合
-        if(drag_flg == true) {
-            //要素位置をCSSで設定
-            $(".tree-wrapper").css("left",(evt2.clientX - posX1));
-            $(".tree-wrapper").css("top",(evt2.clientY - posY1));
-            $("#posX1").val(pX3 + evt2.clientX - posX1);
-            $("#posY1").val(pY3 + evt2.clientY - posY1);
-            tree_pos = $(".tree_title").position();
-            title_posX = tree_pos.left;
-            title_posY = tree_pos.top;
-        }
+      //ドラッグ中の場合
+      if(drag_flg == true) {
+        //要素位置をCSSで設定
+        $(".tree-wrapper").css("left",(evt2.clientX - posX1));
+        $(".tree-wrapper").css("top",(evt2.clientY - posY1));
+        $("#posX1").val(pX3 + evt2.clientX - posX1);
+        $("#posY1").val(pY3 + evt2.clientY - posY1);
+        tree_pos = $(".tree_title").position();
+        title_posX = tree_pos.left;
+        title_posY = tree_pos.top;
+      }
     });
   });
 
   //クリックしたボックスのbodyを出現
   $(document).on('click','.leaf', function(evt){    
-      $('this_id .tooltip').show();
-      $(this).find('.tooltip').fadeIn('fast');
+    $('this_id .tooltip').show();
+    $(this).find('.tooltip').fadeIn('fast');
   });
   //クリックしたボックスのbodyを隠す
   $(document).on('click','.close-window', function(evt){ 
-      $('this_id .tooltip').hide();
-      $(this).parent('.tooltip').fadeOut('fast');
-      $('.tooltip').css({'position':'absolute','left':'','top':'','width':'','height':''});
-      evt.stopPropagation()
+    $('this_id .tooltip').hide();
+    $(this).parent('.tooltip').fadeOut('fast');
+    $('.tooltip').css({'position':'absolute','left':'','top':'','width':'','height':''});
+    evt.stopPropagation()
   });
   //吹き出しをマウスオーバーで拡大表示
   $(document).ready(function(){

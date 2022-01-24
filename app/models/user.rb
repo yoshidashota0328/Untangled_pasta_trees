@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  has_many :layers, dependent: :destroy 
-  has_many :trees, dependent: :destroy 
+  has_many :layers, dependent: :destroy
+  has_many :trees, dependent: :destroy
   validates :password, confirmation: true
   validates :email, presence: true, uniqueness: true
   validates :user_name, presence: true, uniqueness: true, length: { maximum: 10 }

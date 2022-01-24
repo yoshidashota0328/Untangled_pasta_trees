@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy]
   skip_before_action :require_login, only: %i[new create]
-  
+
   def index; end
 
   def new
@@ -42,6 +44,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :user_name)  
+    params.require(:user).permit(:email, :password, :password_confirmation, :user_name)
   end
 end

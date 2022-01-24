@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PasswordResetsController < ApplicationController
   skip_before_action :require_login
   def new; end
@@ -11,7 +13,7 @@ class PasswordResetsController < ApplicationController
   def edit
     @token = params[:id]
     @user = User.load_from_reset_password_token(@token)
-    not_authenticated  if @user.blank?
+    not_authenticated if @user.blank?
   end
 
   def update
@@ -23,7 +25,7 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
       redirect_to login_path, notice: 'Update successful.'
-    else 
+    else
       flash.now[:notice] = 'Password does not match'
       render :edit
     end
