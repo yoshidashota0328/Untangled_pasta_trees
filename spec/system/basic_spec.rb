@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe 'Users', type: :system do
   let!(:user) { create(:user) }
   let!(:tree) { create(:tree, user: user) }
 
@@ -35,7 +37,7 @@ RSpec.describe "Users", type: :system do
   end
   describe 'after login' do
     before { login_as(user) }
-    
+
     it 'can create new tree' do
       visit '/'
       click_link 'Create_tree'
@@ -80,7 +82,7 @@ RSpec.describe "Users", type: :system do
       expect(page).not_to have_content('piyo')
       expect(page).not_to have_content('fuga')
     end
-    fit 'can edit user account' do
+    it 'can edit user account' do
       visit '/'
       click_link 'user:hoge'
       click_link 'Edit_user'

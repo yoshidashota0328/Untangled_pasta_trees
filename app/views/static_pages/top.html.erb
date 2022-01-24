@@ -57,15 +57,15 @@ $(function () {
       r += c[Math.floor(Math.random()*cl)];
     }
     var x = getRandomInt(0, availWidth)
-    var size = getRandomInt(10, 30)
+    var size = getRandomInt(5, 15)
     $('body').append('<div class="particle" style="font-size: ' + size + 'px; left: ' + x + 'px;">' + r + '</div>')
   }
   var i = 1;
   var particleLoop = setInterval(function() {
     particle()
     i++;
-    if(i > 200) clearInterval(particleLoop);  
-  }, 100);
+    if(i > 400) clearInterval(particleLoop);  
+  }, 50);
 
 });
 </script>

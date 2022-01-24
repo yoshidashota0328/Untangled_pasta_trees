@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   config.after_initialize do
     Bullet.enable        = true
@@ -49,6 +51,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+
   config.action_mailer.default_url_options = Settings.default_url_options.to_h
 end

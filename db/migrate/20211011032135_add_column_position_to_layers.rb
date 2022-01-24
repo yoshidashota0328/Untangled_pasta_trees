@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnPositionToLayers < ActiveRecord::Migration[5.2]
   def change
     add_column :layers, :positionX, :integer, null: false, default: 0

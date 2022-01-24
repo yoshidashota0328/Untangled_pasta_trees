@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class LayersController < ApplicationController
   protect_from_forgery
   before_action :set_layer, only: %i[show edit update destroy]
   skip_before_action :require_login, only: %i[index]
   def index
-    tree = Tree.find(params[:tree_id]) 
+    tree = Tree.find(params[:tree_id])
     # 公開ツリー または ユーザがauthor
-    if tree.state == "public_tree" || current_user&.id == tree.user_id
+    if tree.state == 'public_tree' || current_user&.id == tree.user_id
       gon.layers = tree.layers.all.order(:layer_id)
       gon.current_user = current_user&.id
       @author = User.find(tree.user_id)
@@ -44,4 +46,3 @@ class LayersController < ApplicationController
     params.permit(:id, :title, :body, :positionX, :positionY, :parent_id, :db_id, :layer_id, :user_id, :tree_id)
   end
 end
-
