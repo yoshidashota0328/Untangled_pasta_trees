@@ -11,7 +11,7 @@ class LayersController < ApplicationController
       gon.layers = tree.layers.all.order(:layer_id)
       gon.current_user = current_user&.id
       @author = User.find(tree.user_id)
-      gon.search = tree.layers.where('body like ?', "%#{params[:search]}%")
+      gon.search = tree.layers.where('body like ?', "%#{params[:search]}%") if params[:search] != nil
     else
       redirect_back(fallback_location: trees_path)
     end
