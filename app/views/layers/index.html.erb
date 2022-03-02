@@ -368,7 +368,21 @@
     $('.tooltip').css({'position':'absolute','left':'','top':'','width':'','height':''});
     evt.stopPropagation()
   });
-  //吹き出しをマウスオーバーで拡大表示
+  //クリックしたボックスのマークダウンエディターを開閉
+  $(document).on('click','.tooltip', function(evt){   
+    var tooltip_id = $(event.target).attr("id"); 
+    easy_hide_id = $(event.target).find(".leaf").attr("id");
+    var tooltip_size = document.getElementById(tooltip_id);
+    if ( tooltip_size.style.width == "" ){    
+      tooltip_size.style.width = "1280px";
+      $('#easy-hide' + this_id).show();
+    }else{
+      tooltip_size.style.width = "";
+    $('#easy-hide' + this_id).hide();
+    }
+  });
+
+  //吹き出しをマウスオーバーでマークダウンエディターを表示
   $(document).ready(function(){
     $(document).on({
       'mouseenter' : function() {
@@ -389,7 +403,7 @@
           }
         })
       },
-      //吹き出しをマウスオフで縮小表示
+      //吹き出しをマウスオフでマークダウンエディターを縮小表示
       'mouseleave' : function(){
         jQuery(":hover").each(function () { 
           var tooltip_id = $(event.target).attr("id");
