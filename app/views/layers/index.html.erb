@@ -57,9 +57,9 @@
         before_parent_posX = title_posX;
         before_parent_posY = title_posY;
         if(fk_user_id == gon.current_user){
-          $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><input type="text" class="not" name="positionX" id="posX1" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY1" value="' + elem.positionY + '"></br><div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div></div>')
+          $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button>click open<input type="text" class="not" name="positionX" id="posX1" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY1" value="' + elem.positionY + '"></br><div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div></div>')
         }else{
-          $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></div></form></div></div>')
+          $('body').append('<div class="tree-wrapper"><div class="leaf tree_title" style="left: ' + elem.positionX + 'px; top: ' + elem.positionY + 'px;" id="1">top<form action="layers/' + treetop_i + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + treetop_i + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button>click open<div id="easy-hide1"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + '1">' + elem.body + '</textarea></div></div></form></div></div>')
         } 
         $('.tooltip').hide();
         $('#easy-hide1').hide();
@@ -79,9 +79,9 @@
         var svg_height = Math.abs(leaf_posY - before_parent_posY);
         console.log("parent_posX" + parent_posX); 
         if(fk_user_id == gon.current_user){
-          $('.tree_title').after('<div class="leaf" style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" id="' + layer_id + '">' + elem.layer_id + '</br><form action="layers/' + db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><button class="del" id="del-id' + layer_id + '" type="button">DELETE</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '" value="' + elem.parent_id + '" placeholder="Enter smaller than ' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '" value="' + elem.positionY + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box" id="line' + layer_id + '" style="left: ' + before_parent_posX + 'px; top: ' + before_parent_posY + 'px;"></div>')
+          $('.tree_title').after('<div class="leaf" style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" id="' + layer_id + '">' + elem.layer_id + '</br><form action="layers/' + db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"></br><button id="left-branch">+</button><button id="left-down-branch">+</button><button id="right-down-branch">+</button><button id="right-branch">+</button><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button>click open<button class="del" id="del-id' + layer_id + '" type="button">DELETE</button><input type="text" class="parent not" name="parent_id" id="parent' + layer_id + '" value="' + elem.parent_id + '" placeholder="Enter smaller than ' + layer_id + '"><input type="text" class="not" name="positionX" id="posX' + layer_id + '" value="' + elem.positionX + '"><input type="text" class="not" name="positionY" id="posY' + layer_id + '" value="' + elem.positionY + '"></br><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '">' + elem.body + '</textarea></div></br><input type="submit" value="save" class="save"></div></form></div><div class="line-box" id="line' + layer_id + '" style="left: ' + before_parent_posX + 'px; top: ' + before_parent_posY + 'px;"></div>')
         }else{
-          $('.tree_title').after('<div class="leaf" style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" id="' + layer_id + '">' + elem.layer_id + '</br><form action="layers/' + db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button><div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '">' + elem.body + '</textarea></div></div></form></div><div class="line-box" id="line' + layer_id + '" style="left: ' + before_parent_posX + 'px; top: ' + before_parent_posY + 'px;"></div>')
+          $('.tree_title').after('<div class="leaf" style="left: ' + leaf_posX + 'px; top: ' + leaf_posY + 'px;" id="' + layer_id + '">' + elem.layer_id + '</br><form action="layers/' + db_id + '" method="post"><input type="hidden" name="_method" value="patch" /><input type="hidden" id="db_id' + layer_id + '" name="db_id" value="' + db_id + '"><input type="hidden" id="layer_id" name="layer_id" value="' + layer_id + '"><input type="hidden" id="user_id" name="user_id" value="' + fk_user_id + '"><input class="title" type="text" name="title" value="' + elem.title + '"><div class="tooltip" id="tooltip-id' + layer_id + '"><button type="button" class="close-window">×</button>click open<div id="easy-hide' + layer_id + '"><textarea name="body" class="leaf-body" id="leaf-body' + fk_user_id + fk_tree_id + layer_id + '">' + elem.body + '</textarea></div></div></form></div><div class="line-box" id="line' + layer_id + '" style="left: ' + before_parent_posX + 'px; top: ' + before_parent_posY + 'px;"></div>')
         }
         var line_id = "line" + layer_id 
         var line_pos = document.getElementById(line_id);   
@@ -369,19 +369,25 @@
     evt.stopPropagation()
   });
   //クリックしたボックスのマークダウンエディターを開閉
-  $(document).on('click','.tooltip', function(evt){   
-    var tooltip_id = $(event.target).attr("id"); 
-    easy_hide_id = $(event.target).find(".leaf").attr("id");
-    var tooltip_size = document.getElementById(tooltip_id);
-    if ( tooltip_size.style.width == "" ){    
-      tooltip_size.style.width = "1280px";
-      $('#easy-hide' + this_id).show();
-    }else{
-      tooltip_size.style.width = "";
-    $('#easy-hide' + this_id).hide();
-    }
+  $(document).ready(function(){
+    $(document).on('click','.tooltip', function(evt){   
+      var tooltip_id = $(event.target).attr("id"); 
+      easy_hide_id = $(event.target).find(".leaf").attr("id");
+      var tooltip_size = document.getElementById(tooltip_id);
+      if ( tooltip_size.style.width == "" ){    
+        tooltip_size.style.width = "1280px";
+        $('#easy-hide' + this_id).show();
+      }else{
+        tooltip_size.style.width = "";
+      $('#easy-hide' + this_id).hide();
+      }
+      setTimeout(function(){
+        $('.tooltip').css({'z-index':'1'});
+        z_index_cnt += 1;
+        tooltip_size.style.zIndex = z_index_cnt;
+      }, 0);
+    });
   });
-
   //吹き出しをマウスオーバーでマークダウンエディターを表示
   $(document).ready(function(){
     $(document).on({
@@ -394,12 +400,11 @@
             tooltip_size.style.width = "1280px";
             $('#easy-hide' + this_id).show();
             console.log('#easy-hide' + this_id)
-            $(document).on('click','.tooltip', function(){
-              //document.getElementsByClassName(".tooltip").style.zIndex = 1;
+            setTimeout(function(){
               $('.tooltip').css({'z-index':'1'});
               z_index_cnt += 1;
               tooltip_size.style.zIndex = z_index_cnt;
-            });
+            }, 0);
           }
         })
       },
